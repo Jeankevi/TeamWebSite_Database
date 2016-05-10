@@ -21,8 +21,8 @@
  
   <li> <a href = "openForm.jsp"> Login </a>  </li> 
   <li> <a href = "employeeByDeptForm.jsp">  Employees work on project controlled by (deptNum)</a>  </li>
-  <li> <a href = "notDone.jsp">  Employees information by project</a>  </li>
-  <li> <a href = "employeeWorkWithForm.jsp">  Employees that work with (fname, lname)</a>  </li>
+  <li> <a href = "newAdvisor.jsp">  Student gets a new advisor </a>  </li>
+  <li> <a href = "deleteCourse.jsp">  Student deletes a course from their schedule</a>  </li>
   <li> <a href = "notDone.jsp">  Employees that do not work on any project</a>  </li>
   <li> <a href = "notDone.jsp">  Insert into works_on one tuples(essn, pno, hr) - extra credit</a> </li>
   <li> <a href = "updateHoursWorkOnForm.jsp">  Update works_on add more hours to tuple (essn, pno, hr)</a> </li>  
