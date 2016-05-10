@@ -223,7 +223,7 @@ public class AccessDB {
 	 * required for. 
 	 */
 	static void callUpdatePreReq() throws SQLException {
-		ResultSet rs;
+		//ResultSet rs;
 		System.out.print("Enter the course number of the prerequisite to be changed: ");
 		String oldPRnum = keyboard.nextLine();
 		System.out.print("Enter the department of the prerequisite to be changed: ");

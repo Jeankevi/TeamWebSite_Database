@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<%@ include file="head.jsp" %>
+<jsp:include page="head.jsp" />
 	<h1 style="color:blue;">Form Data From Login</h1>
 	The user is:<%= request.getParameter("user") %>
 	<br> The password is:<%="*******" %>
@@ -25,7 +25,7 @@
 
 	<br>
 	<% if(rset.next()){ %>
-	<h2 style="color:green;" title = Welcome to Smart Schedule>
+	<h2 style="color:green;" title = "Welcome to Smart Schedule">
 		Hi
 		<%= rset.getString(4) +", " + rset.getString(3)%></h2>
 	<p>

@@ -51,10 +51,10 @@ li a:hover:not(.active ) {
 <body>
 	<ul class = "menu">
 		<li><a href="index.jsp">Home</a></li>
-		<li><a href="#contact">Contact</a></li>
-		<li><a href="#about">About</a></li>
+		<li><a href="notDone.jsp">Contact</a></li>
+		<li><a href="notDone.jsp">About</a></li>
 		<% if(myUtil.getConn() != null) {%>
-		<li style="float:right; border-left:1px solid #bbb"><a href="openForm.jsp">LogOut</a></li>
+		<li style="float:right; border-left:1px solid #bbb"><a href="logOut.jsp">LogOut</a></li>
 		<% } else {%>
 		<li style="float:right; border-left:1px solid #bbb"><a href="openForm.jsp">Login</a></li>
 		<%} %>

@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-<%@ include file="head.jsp" %>
+<jsp:include page="head.jsp" />
 <h1>Login</h1>
 
 <form action="open.jsp" method="get">
