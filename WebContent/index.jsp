@@ -12,10 +12,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Main Menu</title>
 <style> 
-<%@ include file="head.jsp" %>
 </style>
 </head>
 <body>
+<%@ include file="head.jsp" %>
 <h1>Main Menu</h1>
 <ol>
  
