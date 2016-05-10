@@ -4,16 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Open Database</title>
+<title>Login</title>
+<style> 
+<%@ include file="head.jsp" %>
+</style>
 </head>
 <body>
-<h1>Open The Database</h1>
+<h1>Login</h1>
 
 <form action="open.jsp" method="get">
   <table> 
-   <tr> <td> User ID:     </td>  <td> <input type="text" name="id" value="" size="20">  </td> </tr>
-   <tr> <td> Password: </td>  <td> <input type="password" name="pw" value="" size="20"> </td> </tr>
-   <tr> <td> Database: </td>  <td> ba367_2016</td> </tr>
+   <tr> <td> User ID:     </td>  <td> <input type="text" name="user" value="" size="20">  </td> </tr>
+   <tr> <td> Password: </td>  <td> <input type="password" name="password" value="" size="20"> </td> </tr>
+  
            
   </table>
   <input type="submit" value="Login">

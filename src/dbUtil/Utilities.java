@@ -65,8 +65,6 @@ public class Utilities {
 			stmt.setString(2, password);
 			rset = stmt.executeQuery();
 			
-			System.out.println("Success");
-			
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
