@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
 <style> 
-<%@ include file="head.jsp" %>
 </style>
 </head>
 <body>
+<%@ include file="head.jsp" %>
 <h1>Login</h1>
 
 <form action="open.jsp" method="get">

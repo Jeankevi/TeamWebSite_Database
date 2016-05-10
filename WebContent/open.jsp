@@ -8,10 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ProcessOpenForm</title>
 <style> 
-<%@ include file="head.jsp" %>
 </style>
 </head>
 <body>
+<%@ include file="head.jsp" %>
 	<h1 style="color:blue;">Form Data From Login</h1>
 	The user is:<%= request.getParameter("user") %>
 	<br> The password is:<%="*******" %>
