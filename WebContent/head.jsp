@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="myUtils" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +53,7 @@ li a:hover:not(.active ) {
 		<li><a href="index.jsp">Home</a></li>
 		<li><a href="#contact">Contact</a></li>
 		<li><a href="#about">About</a></li>
-		<% if(myUtil.getConn() != null) {%>
+		<% if(myUtils.getConn() != null) {%>
 		<li style="float:right; border-left:1px solid #bbb"><a href="openForm.jsp">LogOut</a></li>
 		<% } else {%>
 		<li style="float:right; border-left:1px solid #bbb"><a href="openForm.jsp">Login</a></li>

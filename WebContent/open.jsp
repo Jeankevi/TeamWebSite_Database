@@ -25,9 +25,11 @@
 
 	<br>
 	<% if(rset.next()){ %>
-	<h2 style="color:green;" title = Welcome to Smart Schedule>
+	<h2 style="color:green;">Welcome to Smart Schedule</h2>
+	<p><b>
 		Hi
-		<%= rset.getString(4) +", " + rset.getString(3)%></h2>
+		<%= rset.getString(4) +", " + rset.getString(3)%> </b></p>
+		<input type="text" name="name" value= <%= rset.getString(4)%> size="20">
 	<p>
 		Year in:
 		<%= rset.getString(5) %></p>
@@ -37,6 +39,8 @@
 	<%}else{ %>
 	<h2 style="color:red;">Error Message</h2>
 	<p>Invalid user id and password. Please try again</p>
+	myUtil.closeDB();
+	<jsp:forward page="openForm.jsp"></jsp:forward>
 	<%} %>
 	<br>
 	<a href="index.jsp">Back to Main Menu</a>
