@@ -19,19 +19,11 @@
 <h1>Main Menu</h1>
 <ol>
  
-  <li> <a href = "openForm.jsp"> Login </a>  </li> 
-  <li> <a href = "employeeByDeptForm.jsp">  Employees work on project controlled by (deptNum)</a>  </li>
-  <li> <a href = "newAdvisor.jsp">  Student gets a new advisor </a>  </li>
-  <li> <a href = "deleteCourse.jsp">  Student deletes a course from their schedule</a>  </li>
-  <li> <a href = "notDone.jsp">  Employees that do not work on any project</a>  </li>
-  <li> <a href = "notDone.jsp">  Insert into works_on one tuples(essn, pno, hr) - extra credit</a> </li>
-  <li> <a href = "updateHoursWorkOnForm.jsp">  Update works_on add more hours to tuple (essn, pno, hr)</a> </li>  
-  <li> <a href = "deleteEmployeeWorkOnForm.jsp">  Delete one tuple from works_on with (essn, pno) </a>  </li>
-  <li> <a href = "addNewDeptLocationForm.jsp">  Add new department location(dnum, location) </a>  </li>
-  
-  <li> <a href = "matchLastNameForm.jsp">Employees that match specified last name</a><br>  </li>
-  <li> <a href = "close.jsp"> Close the DB </a> </li>
- 
+  <li> <a href = "notDone.jsp">  Student gets a new adviser </a>  </li> 
+  <li> <a href = "notDone.jsp">  Student creates a new schedule</a>  </li>
+  <li> <a href = "notDone.jsp">  Adviser updates a prereq </a>  </li>
+  <li> <a href = "notDone.jsp">  Student deletes a course from their schedule</a>  </li>
+  <li> <a href = "notDone.jsp">  Evaluate a schedule</a>  </li>
 
 </ol>
 
