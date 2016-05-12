@@ -32,6 +32,7 @@ The SID is:<%= request.getParameter("user") %> <br>
 		
 			
 		</tr>
+		
 
 		<%
 			while (rset.next()) {
@@ -41,10 +42,10 @@ The SID is:<%= request.getParameter("user") %> <br>
 			out.println("</tr>");
 			}
 		%>
-		</table>
+		
+	</table>
 	
-	
-
+  <a href="index.jsp">Back to Main Menu</a>
 
 </body>
 </html>
