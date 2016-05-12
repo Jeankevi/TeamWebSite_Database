@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<%@ include file="head.jsp" %>
+<jsp:include page ="head.jsp" />
 <h1>Main Menu</h1>
 <ol>
  
