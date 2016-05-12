@@ -117,31 +117,26 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * 
 	 */
-	public ResultSet createSchedule(String sNum, int yrPlan, String type){
-		ResultSet rset = null;
+	public int createSchedule(String sNum, int yrPlan, String type, String sid){
 		String sql = null;
-		String sid = null;
-		
+		int result = 0;
+				
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
-			
-			sid = "04040404";
-			rset = null;
 			
 			//Debug 
 			stmt = conn.createStatement();
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
 				  "VALUES ('"+sNum+"', '"+sid+"', "+yrPlan+", '"+type+"') ";
-			stmt.executeUpdate(sql);
+			result = stmt.executeUpdate(sql);
 			//EndDEBUG
-			System.out.println("Success");
 			
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
 		
-		return rset;
+		return result;
 	}
 	/**
 	 * This method assigns a student a new advisor 
@@ -184,8 +179,9 @@ public class Utilities {
 	 * 
 	 */
 	 
-	public void deleteCourse(int sNum, String cNum, String dept){
+	public int deleteCourse(int sNum, String cNum, String dept, String sid){
 		String sql = null;
+		int delete = 0;
 				
 		try {
 			Statement stmt = conn.createStatement();
@@ -193,13 +189,14 @@ public class Utilities {
 			stmt = conn.createStatement();
 			sql = "DELETE FROM belongs_to "+
 			"WHERE course_num = '"+cNum+"' and sch_num = "+sNum+" and "+ 
-			"dept = '"+dept+"' and sid = '01010101'";
-			stmt.executeUpdate(sql);
+			"dept = '"+dept+"' and sid = '"+sid+"'";
+			delete = stmt.executeUpdate(sql);
 			//EndDEBUG
-			System.out.print("Class "+dept+" "+cNum+" successfully deleted from schedule "+sNum);						
+						
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
+		return delete;
 	}
 	
 	/**
@@ -207,7 +204,7 @@ public class Utilities {
 	 * @param sch_num specific schedule number that student want to fulfill
 	 * @return returns the course on required CSCE courses (12 credits) that student need to take
 	 */
-	public ResultSet scheduleEval1(int sch_num){
+	public ResultSet scheduleEval1(int sch_num, String sid){
 		ResultSet rset = null;
 		String sql = null;
 		try {
@@ -217,10 +214,11 @@ public class Utilities {
 					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
 					"WHERE f.req_num = 2) and concat(c.dept,c.course_num) not in " +
 					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
-					"WHERE sid = '04040404' and sch_num = ? ) ";
+					"WHERE sid = ? and sch_num = ? ) ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.clearParameters();
-			stmt.setInt(1,sch_num);
+			stmt.setString(1,sid);
+			stmt.setInt(2,sch_num);
 			rset = stmt.executeQuery();
 		}catch (SQLException e){
 			System.out.println("createStatement " + e.getMessage() + sql);	
@@ -233,7 +231,7 @@ public class Utilities {
 	 * @param sch_num specific schedule number that student want to fulfill
 	 * @return returns the course on required of CSCE 367 or CSCE 390 (4 credits) that student need to take
 	 */
-	public ResultSet scheduleEval2(int sch_num){
+	public ResultSet scheduleEval2(int sch_num, String sid){
 		ResultSet rset = null;
 		String sql = null;
 		try {
@@ -241,15 +239,39 @@ public class Utilities {
 					"FROM semester s left outer join course c on concat(c.dept,c.course_num) = concat(s.dept,s.course_num) " +
 					"WHERE concat(c.dept,c.course_num) in " +
 					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
-					"WHERE f.req_num = 3) and concat(c.dept,c.course_num) not in " +
+					"WHERE f.req_num = 3 and concat(c.dept,c.course_num) in " +
 					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
-					"WHERE sid = '04040404' and sch_num = ? ) ";
+					"WHERE sid = ? and sch_num = ? )) ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.clearParameters();
-			stmt.setInt(1,sch_num);
+			stmt.setString(1,sid);
+			stmt.setInt(2,sch_num);
 			rset = stmt.executeQuery();
 		}catch (SQLException e){
 			System.out.println("createStatement " + e.getMessage() + sql);	
+		}
+		
+		try {
+			if(!rset.next()){
+				sql = "SELECT concat(c.dept,c.course_num) Course, semester_c , credit_hrs "+
+						"FROM semester s left outer join course c on concat(c.dept,c.course_num) = concat(s.dept,s.course_num) " +
+						"WHERE concat(c.dept,c.course_num) in " +
+						"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
+						"WHERE f.req_num = 3 and concat(c.dept,c.course_num) not in " +
+						"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
+						"WHERE sid = ? and sch_num = ? )) ";
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.clearParameters();
+				stmt.setString(1,sid);
+				stmt.setInt(2,sch_num);
+				rset = stmt.executeQuery();
+			}
+			else{
+				rset = null;
+			}
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage());
+			e.printStackTrace();
 		}
 		return rset;
 	}
@@ -259,7 +281,7 @@ public class Utilities {
 	 * @param sch_num specific schedule number that student want to fulfill
 	 * @return returns the course on required of CSCE electives (12 credits)that student need to take
 	 */
-	public ResultSet scheduleEval3(int sch_num){
+	public ResultSet scheduleEval3(int sch_num, String sid){
 		ResultSet rset = null;
 		String sql = null;
 		try {
@@ -269,10 +291,11 @@ public class Utilities {
 					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
 					"WHERE f.req_num = 4) and concat(c.dept,c.course_num) not in " +
 					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
-					"WHERE sid = '04040404' and sch_num = ? ) ";
+					"WHERE sid = ? and sch_num = ? ) ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.clearParameters();
-			stmt.setInt(1,sch_num);
+			stmt.setString(1,sid);
+			stmt.setInt(2,sch_num);
 			rset = stmt.executeQuery();
 		}catch (SQLException e){
 			System.out.println("createStatement " + e.getMessage() + sql);	
@@ -290,8 +313,9 @@ public class Utilities {
 	 * @cDept cDept Department name that the updated PreReq is for 
 	 */
 	 
-	public void updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
+	public int updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
 		String sql = null;
+		int update = 0;
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -299,16 +323,16 @@ public class Utilities {
 			stmt = conn.createStatement();
 			sql = "delete from pre_req "+
 				  "where dept='"+cDept+"' and course_num='"+cNum+"' and dept2='"+oldPRDept+"' and course_num2='"+oldPRNum+"'";
-			stmt.executeUpdate(sql);
+			update = stmt.executeUpdate(sql);
 			sql = "insert into pre_req "+
 				  "values ('"+cDept+"','"+cNum+"','"+newPRDept+"','"+newPRNum+"')";
-			stmt.executeUpdate(sql);
+			update += stmt.executeUpdate(sql);
 			//EndDEBUG
 			System.out.print(oldPRDept+" "+oldPRNum+" replaced with "+newPRDept+" "+newPRNum+"\n");						
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
-		
+		return update;
 	}
 	
 }
