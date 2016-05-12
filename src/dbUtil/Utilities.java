@@ -115,7 +115,7 @@ public class Utilities {
 	 * @param sNum Student's unique schedule number 
 	 * @param yrPlan Number of years the student plans on taking to get their degree 
 	 * @param type Type of degree the student plans on getting 
-	 * 
+	 * @return rset
 	 */
 	public int createSchedule(String sNum, int yrPlan, String type, String sid){
 		String sql = null;
