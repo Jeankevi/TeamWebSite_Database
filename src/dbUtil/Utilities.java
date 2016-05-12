@@ -115,7 +115,7 @@ public class Utilities {
 	 * @param sNum Student's unique schedule number 
 	 * @param yrPlan Number of years the student plans on taking to get their degree 
 	 * @param type Type of degree the student plans on getting 
-	 * 
+	 * @return rset
 	 */
 	public ResultSet createSchedule(String sNum, int yrPlan, String type){
 		ResultSet rset = null;
@@ -126,8 +126,6 @@ public class Utilities {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
 			
-			sid = "04040404";
-			rset = null;
 			
 			//Debug 
 			stmt = conn.createStatement();
