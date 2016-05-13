@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="head.jsp" />
+	<jsp:include page="head.jsp"/>
 	<% myUtil.closeDB(); %>
 	<h1 style="color: blue;">Successfully LogOut</h1>
 	<a href="index.jsp">Back to Home</a>
