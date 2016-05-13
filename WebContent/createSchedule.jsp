@@ -1,11 +1,15 @@
 <%@ page import="java.sql.*" %>
-<jsp:useBean id="dbUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <% if(myUtil.getConn() == null) {%>
+	<jsp:forward page="openForm.jsp"></jsp:forward>
+	<% }%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<jsp:include page="head.jsp" />
 <title>Student Creates a New Schedule</title>
 </head>
 <body>
@@ -28,7 +32,7 @@ The Degree type is: <%=request.getParameter("type") %> <br>
 		
 		String type = request.getParameter("type");
 	
-		ResultSet rset = dbUtil.createSchedule(sNum, sid, yrPlan, type);
+		int result = dbUtil.createSchedule(sNum, yrPlan, sid, type);
 	%>
 	
 	<table>
@@ -38,15 +42,6 @@ The Degree type is: <%=request.getParameter("type") %> <br>
 			<td>Degree Type</td>
 		</tr>
 		
-		<%	while(rset.next()){ 
-			out.println("<tr>");
-			out.println("<td>" + rset.getString(1) + "</td>");
-			out.println("<td>" + rset.getString(2) + "</td>");
-			out.println("<td>" + rset.getInt(1) + "</td>");
-			out.println("<td>" + rset.getString(3) + "</td>");
-			out.println("</tr>");
-			}
-		%>
 	</table>
 	
 	<a href="index.jsp">Back to Main Menu</a>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<jsp:include page="head.jsp" />
 <title> Student gets a new Adviser </title>
 </head>
 <body>

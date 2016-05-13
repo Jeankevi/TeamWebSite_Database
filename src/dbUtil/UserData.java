@@ -9,7 +9,7 @@ package dbUtil;
  */
 public class UserData { 
 	private String user = "";
-	private boolean valid = true;
+	private boolean valid = false;
 	
 	public UserData(){
 		super();

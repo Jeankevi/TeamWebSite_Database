@@ -110,6 +110,7 @@ public class Utilities {
 		}
 	}// closeDB
 	
+		
 	/**
 	 * This method creates a new schedule for a student
 	 * @param sNum Student's unique schedule number 

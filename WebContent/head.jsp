@@ -50,9 +50,11 @@ li a:hover:not(.active ) {
 </head>
 <body>
 	<ul class = "menu">
-		<li><a href="index.jsp">Home</a></li>
-		<li><a href="notDone.jsp">Contact</a></li>
-		<li><a href="notDone.jsp">About</a></li>
+		<li> <a href="open.jsp">Home</a></li>
+		<li> <a href = "createScheduleForm.jsp">Create Schedule</a></li>
+	    <li> <a href = "newAdvisorForm.jsp">Add New Advisor</a></li>
+	    <li> <a href = "deleteCourseForm.jsp">Deletes a Course</a></li>
+	    <li> <a href = "updatePreReqForm.jsp">Updates PreReq</a></li>
 		<% if(myUtil.getConn() != null) {%>
 		<li style="float:right; border-left:1px solid #bbb"><a href="logOut.jsp">LogOut</a></li>
 		<% } else {%>
