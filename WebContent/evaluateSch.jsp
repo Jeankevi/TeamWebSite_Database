@@ -25,5 +25,10 @@ ResultSet rset2 = myUtil.scheduleEval2(schNum);
 ResultSet rset3 = myUtil.scheduleEval3(schNum);
 
 %>
+
+
+ <a href="index.jsp">Back to Main Menu</a>	
+ 
+ 
 </body>
 </html>

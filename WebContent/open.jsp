@@ -26,7 +26,7 @@
 	<br>
 	<% if(rset.next()){ %>
 	<h2 style="color:green;" title = Welcome to Smart Schedule>
-		Hi
+		
 		<%= rset.getString(4) +", " + rset.getString(3)%></h2>
 	<p>
 		Year in:

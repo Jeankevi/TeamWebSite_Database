@@ -21,7 +21,7 @@ The SID is:<%= request.getParameter("user") %> <br>
 
 	   String fid = request.getParameter("fid");
 	   
-	   ResultSet rset = myUtil.newAdviser(sid,fid);
+	   ResultSet rset = myUtil.newAdviser(fid,sid);
 	   
 	%> 
 	
@@ -33,9 +33,7 @@ The SID is:<%= request.getParameter("user") %> <br>
 			
 		</tr>
 		
-		if(rset != null){
-			out.println("hi");	
-			}
+		
 		<%
 			while (rset.next()) {
 			out.println("<tr>");

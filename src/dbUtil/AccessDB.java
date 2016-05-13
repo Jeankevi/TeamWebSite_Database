@@ -177,8 +177,10 @@ public class AccessDB {
 		String cNum = keyboard.nextLine();
 		System.out.print("Please enter the course department(CSCE): ");
 		String dept = keyboard.nextLine();
+		System.out.print("Please enter your SID: ");
+		String sid = keyboard.nextLine();
 		
-		testObj.deleteCourse(sNum, cNum, dept);
+		testObj.deleteCourse(sNum, cNum, dept, sid);
 	}
 	
 	/**
