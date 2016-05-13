@@ -21,16 +21,22 @@ The Course Num is:<%= request.getParameter("crsnum") %> <br>
 	<% int crsnum = Integer.parseInt(request.getParameter("crsnum"));
 	  
 	   
-	   
 	   String dept = request.getParameter("dept");
 	   
 	   
 	   String schnum = request.getParameter("schnum");
 	   
-	    myUtil.deleteCourse(crsnum,dept,schnum);
+	   String a = myUtil.deleteCourse(crsnum,dept,schnum);
 	   
 	%> 
-	
+			<%
+			while (a.next()) {
+			out.println("<tr>");
+			out.println("<td>" + a.getString(1) + "</td>");
+			out.println("</tr>");
+			}
+		%>
+		
 
 	
 	

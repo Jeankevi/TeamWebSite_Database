@@ -33,7 +33,9 @@ The SID is:<%= request.getParameter("user") %> <br>
 			
 		</tr>
 		
-
+		if(rset != null){
+			out.println("hi");	
+			}
 		<%
 			while (rset.next()) {
 			out.println("<tr>");

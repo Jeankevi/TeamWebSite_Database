@@ -152,6 +152,7 @@ public class Utilities {
 	public ResultSet newAdviser(String fid, String sid){
 		ResultSet rset = null;
 		String sql = null;
+		
 				
 		try {
 			Statement stmt = conn.createStatement();
@@ -184,8 +185,9 @@ public class Utilities {
 	 * 
 	 */
 	 
-	public void deleteCourse(int sNum, String cNum, String dept){
+	public String deleteCourse(int sNum, String cNum, String dept){
 		String sql = null;
+		String test = "The course was deleted";
 				
 		try {
 			Statement stmt = conn.createStatement();
@@ -199,7 +201,9 @@ public class Utilities {
 			System.out.print("Class "+dept+" "+cNum+" successfully deleted from schedule "+sNum);						
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
+			test = "The course was not deleted";
 		}
+		return test;
 	}
 	
 	/**
