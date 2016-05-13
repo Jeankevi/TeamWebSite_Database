@@ -12,6 +12,7 @@
 
 <form action = "createSchedule.jsp" method="get">
 
+
 <table>
 	<tr> <td> Student ID: </td> <td> <input type="text" name="SID" value="" size="20"> </td> </tr>
 	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20"> </td> </tr>
@@ -19,6 +20,7 @@
 	<tr> <td> Degree Type: </td> <td> <input type="text" name="type" value="" size="20"> </td> </tr>
 </table>
 <input type="submit" value="Create Schedule">
+
 
 </form>
 

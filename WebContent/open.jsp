@@ -13,7 +13,9 @@
 </style>
 </head>
 <body>
+
 <jsp:include page="head.jsp" />
+
 	<h1 style="color:blue;">Form Data From Login</h1>
 	The user is:<%= request.getParameter("user") %>
 	<br> The password is:<%="*******" %>

@@ -50,6 +50,7 @@ The Degree type is: <%=request.getParameter("type") %> <br>
 	</table>
 	
 	<a href="index.jsp">Back to Main Menu</a>
+
 	
 </body>
 </html>
