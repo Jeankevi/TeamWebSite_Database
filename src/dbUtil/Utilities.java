@@ -190,17 +190,12 @@ public class Utilities {
 	 * 
 	 */
 	 
-<<<<<<< HEAD
+
 	public String deleteCourse(int sNum, String cNum, String dept, String sid){
-=======
-	public int deleteCourse(int sNum, String cNum, String dept, String sid){
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
+
 		String sql = null;
-<<<<<<< HEAD
+
 		String test = "The course was deleted";
-=======
-		int delete = 0;
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
 				
 		try {
 			Statement stmt = conn.createStatement();
@@ -208,24 +203,17 @@ public class Utilities {
 			stmt = conn.createStatement();
 			sql = "DELETE FROM belongs_to "+
 			"WHERE course_num = '"+cNum+"' and sch_num = "+sNum+" and "+ 
-<<<<<<< HEAD
 			"dept = '"+dept+"' and sid = '" + sid + "'";
 			stmt.executeUpdate(sql);
-=======
-			"dept = '"+dept+"' and sid = '"+sid+"'";
-			delete = stmt.executeUpdate(sql);
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
+
 			//EndDEBUG
 						
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 			test = "The course was not deleted";
 		}
-<<<<<<< HEAD
+
 		return test;
-=======
-		return delete;
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
 	}
 	
 	/**
