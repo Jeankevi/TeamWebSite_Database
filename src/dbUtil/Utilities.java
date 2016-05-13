@@ -223,6 +223,17 @@ public class Utilities {
 		}catch (SQLException e){
 			System.out.println("createStatement " + e.getMessage() + sql);	
 		}
+		try {
+			if(rset.next()){
+				return rset;
+			}
+			else{
+				rset = null;
+			}
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage());
+			e.printStackTrace();
+		}
 		return rset;
 	}
 	

@@ -199,17 +199,25 @@ public class AccessDB {
 	 * of the schedule to be evaluated.
 	 */
 	static void callScheduleEval() throws SQLException {
-		ResultSet rs;
+		ResultSet rs = null;
 		System.out.print("Please enter the student id number: ");
 		String sid = keyboard.nextLine();
 		System.out.print("Please enter your schedule number: ");
 		int sch_num = Integer.parseInt(keyboard.nextLine());
-		System.out.println("\nThere is class you should take to fulfill the degree: ");
-		System.out.println("**********************************************************");
-		System.out.printf("%s\t\t%s\t%s\n", "Course","Semester","Credit hours");
+		
 		rs = testObj.scheduleEval1(sch_num, sid);
-		while (rs.next()) {
-			System.out.printf("%s\t%s\t\t%s\n", rs.getString(1),rs.getString(2),rs.getString(3));
+		if(rs != null){
+			System.out.println("\nThere are classes you should take to fulfill the degree: ");
+			System.out.println("**********************************************************");
+			System.out.printf("%s\t\t%s\t%s\n", "Course","Semester","Credit hours");
+			
+			while (rs.next()) {
+				System.out.printf("%s\t%s\t\t%s\n", rs.getString(1),rs.getString(2),rs.getString(3));
+			}
+		}
+		else{
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("This requirement has been satisfied");
 		}
 		
 		rs = testObj.scheduleEval2(sch_num, sid);
