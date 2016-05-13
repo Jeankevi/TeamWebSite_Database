@@ -11,23 +11,23 @@
 <body>
 <h1>Form date from deleteCourseForm.jsp </h1>
 
-The Course Num is:<%= request.getParameter("crsnum") %> <br>
+    The Course Num is:<%= request.getParameter("crsnum") %> <br>
 	The Dept name is: <%=request.getParameter("dept") %> <br>
-		The Schedule Num is: <%=request.getParameter("schnum") %> <br>
-
+	The Schedule Num is: <%=request.getParameter("schnum") %> <br>
+	SID is: <%=request.getParameter("sid") %> <br>
 	
 
 	
-	<% int crsnum = Integer.parseInt(request.getParameter("crsnum"));
-	  
-	   
-	   
+	<% 
+	
+	   int crsnum = Integer.parseInt(request.getParameter("crsnum"));
+	  	   
 	   String dept = request.getParameter("dept");
 	   
-	   
 	   String schnum = request.getParameter("schnum");
+	   String sid = request.getParameter("schnum");
 	   
-	    myUtil.deleteCourse(crsnum,dept,schnum);
+	   myUtil.deleteCourse(crsnum,dept,schnum,sid);
 	   
 	%> 
 	
