@@ -341,17 +341,13 @@ public class Utilities {
 	 * @cDept cDept Department name that the updated PreReq is for 
 	 */
 	 
-<<<<<<< HEAD
+
 	public String updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
-=======
-	public int updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
+
 		String sql = null;
-<<<<<<< HEAD
+
 		String test = "The PreReq was updated";
-=======
-		int update = 0;
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
+
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -369,11 +365,9 @@ public class Utilities {
 			System.out.println("createStatement " + e.getMessage() + sql);
 			test = "The PreReq was not updated";
 		}
-<<<<<<< HEAD
+
 		return test;
-=======
-		return update;
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
+
 	}
 	
 }
