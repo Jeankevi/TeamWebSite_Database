@@ -15,20 +15,22 @@
 The user is:<%= request.getParameter("user") %>
 The Course Num is:<%= request.getParameter("crsnum") %> <br>
 	The Dept name is: <%=request.getParameter("dept") %> <br>
-		The Schedule Num is: <%=request.getParameter("schnum") %> <br>
-
+	The Schedule Num is: <%=request.getParameter("schnum") %> <br>
+	SID is: <%=request.getParameter("sid") %> <br>
 	
 
+	
+	 
 	
 	<% String crsnum = request.getParameter("crsnum");
 	  
 	   
 	   String dept = request.getParameter("dept");
 	   
-	   
 	   int schnum = Integer.parseInt(request.getParameter("schnum"));
 	   
 	   String user = request.getParameter("user");
+
 	   
 	   String test = myUtil.deleteCourse(schnum,crsnum,dept, user);
 	   

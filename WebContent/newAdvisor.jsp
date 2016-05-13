@@ -32,8 +32,12 @@ The SID is:<%= request.getParameter("user") %> <br>
 		
 			
 		</tr>
+<<<<<<< HEAD
 		
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
 		<%
 			while (rset.next()) {
 			out.println("<tr>");
@@ -42,10 +46,10 @@ The SID is:<%= request.getParameter("user") %> <br>
 			out.println("</tr>");
 			}
 		%>
-		
-	</table>
+		</table>
 	
-  <a href="index.jsp">Back to Main Menu</a>
+	
+
 
 </body>
 </html>
