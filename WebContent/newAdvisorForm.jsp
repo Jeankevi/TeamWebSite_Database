@@ -13,9 +13,10 @@
 <form action="newAdvisor.jsp" method="get">
 <table> 
 
+	<tr> <td> User ID:     </td>  <td> <input type="text" name="user" value="" size="20">  </td> </tr>
+    <tr> <td> Student's new Adviser's ID number: </td>  <td> <input type="text" name="fid" value="" size="20"> </td> </tr>
 
-   <tr> <td> Student's new Adviser's ID number: </td>  <td> <input type="text" name="FID" value="23456789" size="20"> </td> </tr>
-
+ 
   </table>
   <input type="submit" value="Add Adviser">
 </form>
