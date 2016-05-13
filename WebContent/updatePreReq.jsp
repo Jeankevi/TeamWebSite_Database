@@ -20,7 +20,7 @@ The course number to be deleted: <%=request.getParameter("oNum") %> <br> <br>
 	
 
 	
-	<% String oDept = Integer.parseInt(request.getParameter("oDept"));
+	<% String oDept = request.getParameter("oDept");
 	   String oNum  = request.getParameter("oNum");
 	
 	   String cDept = request.getParameter("cDept");
@@ -31,10 +31,13 @@ The course number to be deleted: <%=request.getParameter("oNum") %> <br> <br>
 
 	   
 
-	   myUtil.updatePreReq(oNum, oDept, nNum, nDept, cNum, cDept);
+	  String test = myUtil.updatePreReq(oNum, oDept, nNum, nDept, cNum, cDept);
 	%>
+	
+	
+	<p><%= test %> </p>
 
-
+ <a href="index.jsp">Back to Main Menu</a>	
 
 </body>
 </html>

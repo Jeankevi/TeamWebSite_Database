@@ -11,6 +11,8 @@
 <body>
 <h1>Form date from deleteCourseForm.jsp </h1>
 
+
+The user is:<%= request.getParameter("user") %>
 The Course Num is:<%= request.getParameter("crsnum") %> <br>
 	The Dept name is: <%=request.getParameter("dept") %> <br>
 		The Schedule Num is: <%=request.getParameter("schnum") %> <br>
@@ -18,25 +20,29 @@ The Course Num is:<%= request.getParameter("crsnum") %> <br>
 	
 
 	
-	<% int crsnum = Integer.parseInt(request.getParameter("crsnum"));
+	<% String crsnum = request.getParameter("crsnum");
 	  
 	   
 	   String dept = request.getParameter("dept");
 	   
 	   
-	   String schnum = request.getParameter("schnum");
+	   int schnum = Integer.parseInt(request.getParameter("schnum"));
 	   
-	   String a = myUtil.deleteCourse(crsnum,dept,schnum);
+	   String user = request.getParameter("user");
+	   
+	   String test = myUtil.deleteCourse(schnum,crsnum,dept, user);
 	   
 	%> 
-			<%
-			while (a.next()) {
-			out.println("<tr>");
-			out.println("<td>" + a.getString(1) + "</td>");
-			out.println("</tr>");
-			}
-		%>
+		<p><%= test %> </p>
 		
+		if(myUtil.getconn == null){
+		
+		  <a href="openForm.jsp">Back to Main Menu</a>
+		
+		}
+		
+		
+		  <a href="index.jsp">Back to Main Menu</a>	
 
 	
 	

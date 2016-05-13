@@ -13,7 +13,7 @@
 <form action="deleteCourse.jsp" method="get">
 <table> 
 
-
+	<tr> <td> User ID:     </td>  <td> <input type="text" name="user" value="" size="20">  </td> </tr>
    <tr> <td> Course Number to be deleted: </td>  <td> <input type="text" name="crsnum" value="" size="20"> </td> </tr>
    <tr> <td> Department of the course to be deleted: </td>  <td> <input type="text" name="dept" value="" size="20"> </td> </tr>
    <tr> <td> Schedule Number that the course is on: </td>  <td> <input type="text" name="schnum" value="" size="20"> </td> </tr>
