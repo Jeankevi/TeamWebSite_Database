@@ -126,6 +126,9 @@ public class AccessDB {
 	 */
 	static void callCreateSchedule() throws SQLException {
 		
+		System.out.print("Please enter your Student ID:  ");
+		String sid = keyboard.nextLine();
+		
 		System.out.print("Please enter the schedule number:  ");
 		String sNum = keyboard.nextLine();
 		
@@ -134,11 +137,13 @@ public class AccessDB {
 		
 		System.out.print("Please enter the degree type (BA or BS):  ");
 		String type = keyboard.nextLine().toUpperCase();
-				
+		
+		System.out.print("Success");
+		
 		/**System.out.printf("\n%-12s\n", "Schedule");
 		System.out.println("------------------------");
 		System.out.printf("%s\t%s\t%s\t\n", "Schedule Number", "Year Plan", "Degree Type");*/
-		testObj.createSchedule(sNum, yrPlan, type);
+		testObj.createSchedule(sNum, sid, yrPlan, type);
 		
 	}
 	

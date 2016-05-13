@@ -12,16 +12,23 @@
 
 <h1>Form data from createSchedule.jsp</h1>
 
-The SID is:<%=request.getParameter("user") %> <br>
+The SID is:<%=request.getParameter("sid") %> <br>
+The Schedule number is: <%=request.getParameter("sNum") %> <br>
+The Year plan is:  <%=request.getParameter("yrPlan") %> <br>
+The Degree type is: <%=request.getParameter("type") %> <br>
 
 
-	<%	String sNum = request.getParameter("sNum");
+	<%	
 	
-		int yrPlan = request.getParameter("yrPlan");
+		String sid = request.getParameter("sid");
+	
+		String sNum = request.getParameter("sNum");
+	
+		int yrPlan = Integer.parseInt(request.getParameter("yrPlan"));
 		
 		String type = request.getParameter("type");
 	
-		ResultSet rset = dbUtil.createSchedule(sNum, yrPlan, type);
+		ResultSet rset = dbUtil.createSchedule(sNum, sid, yrPlan, type);
 	%>
 	
 	<table>
@@ -34,11 +41,15 @@ The SID is:<%=request.getParameter("user") %> <br>
 		<%	while(rset.next()){ 
 			out.println("<tr>");
 			out.println("<td>" + rset.getString(1) + "</td>");
-			out.println("<td" + rset.getInt + "</td>");
-			out.println("</tr");
+			out.println("<td>" + rset.getString(2) + "</td>");
+			out.println("<td>" + rset.getInt(1) + "</td>");
+			out.println("<td>" + rset.getString(3) + "</td>");
+			out.println("</tr>");
 			}
 		%>
 	</table>
+	
+	<a href="index.jsp">Back to Main Menu</a>
 	
 </body>
 </html>

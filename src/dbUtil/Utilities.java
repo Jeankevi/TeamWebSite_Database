@@ -71,7 +71,7 @@ public class Utilities {
 		
 		return rset;
 		 
-	}// validUSer
+	}// validUser
 
 	/**
 	 * This method opens the database for the user 
@@ -117,26 +117,29 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return rset
 	 */
-	public ResultSet createSchedule(String sNum, int yrPlan, String type){
+	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
 		ResultSet rset = null;
 		String sql = null;
-		String sid = null;
 		
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
-			
-			
-			//Debug 
-			stmt = conn.createStatement();
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
 				  "VALUES ('"+sNum+"', '"+sid+"', "+yrPlan+", '"+type+"') ";
 			stmt.executeUpdate(sql);
+			/*
+			Statement show = conn.createStatement();
+			show = conn.createStatement();
+			sql = null;
+			sql = "Select sch_num, sid, year_plan, type From Schedule Where sid = '"+ sid +"' ";
+			rset = show.executeQuery(sql);
+			*/
 			//EndDEBUG
-			System.out.println("Success");
+			
 			
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
+			
 		}
 		
 		return rset;
