@@ -128,6 +128,9 @@ public class AccessDB {
 		System.out.print("Please enter the student id number:  ");
 		String sid = keyboard.nextLine();
 		
+		System.out.print("Please enter your Student ID:  ");
+		String sid = keyboard.nextLine();
+		
 		System.out.print("Please enter the schedule number:  ");
 		String sNum = keyboard.nextLine();
 		
@@ -136,6 +139,7 @@ public class AccessDB {
 		
 		System.out.print("Please enter the degree type (BA or BS):  ");
 		String type = keyboard.nextLine().toUpperCase();
+<<<<<<< HEAD
 				
 		int result = testObj.createSchedule(sNum, yrPlan, type, sid);
 		if(result == 1){
@@ -144,6 +148,16 @@ public class AccessDB {
 		else{
 			System.out.println("An error has occurred, the schedule was not created.");
 		};
+=======
+		
+		System.out.print("Success");
+		
+		/**System.out.printf("\n%-12s\n", "Schedule");
+		System.out.println("------------------------");
+		System.out.printf("%s\t%s\t%s\t\n", "Schedule Number", "Year Plan", "Degree Type");*/
+		testObj.createSchedule(sNum, sid, yrPlan, type);
+		
+>>>>>>> refs/remotes/origin/jeankie
 	}
 	
 	/**

@@ -71,7 +71,7 @@ public class Utilities {
 		
 		return rset;
 		 
-	}// validUSer
+	}// validUser
 
 	/**
 	 * This method opens the database for the user 
@@ -117,23 +117,51 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return rset
 	 */
+<<<<<<< HEAD
 	public int createSchedule(String sNum, int yrPlan, String type, String sid){
+=======
+	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
+		ResultSet rset = null;
+>>>>>>> refs/remotes/origin/jeankie
 		String sql = null;
+<<<<<<< HEAD
 		int result = 0;
 				
+=======
+		
+>>>>>>> refs/remotes/origin/jeankie
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
+<<<<<<< HEAD
 			
 			//Debug 
 			stmt = conn.createStatement();
+=======
+>>>>>>> refs/remotes/origin/jeankie
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
 				  "VALUES ('"+sNum+"', '"+sid+"', "+yrPlan+", '"+type+"') ";
+<<<<<<< HEAD
 			result = stmt.executeUpdate(sql);
+=======
+			stmt.executeUpdate(sql);
+			/*
+			Statement show = conn.createStatement();
+			show = conn.createStatement();
+			sql = null;
+			sql = "Select sch_num, sid, year_plan, type From Schedule Where sid = '"+ sid +"' ";
+			rset = show.executeQuery(sql);
+			*/
+>>>>>>> refs/remotes/origin/jeankie
 			//EndDEBUG
+<<<<<<< HEAD
+=======
+			
+>>>>>>> refs/remotes/origin/jeankie
 			
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
+			
 		}
 		
 		return result;
