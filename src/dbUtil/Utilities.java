@@ -325,6 +325,60 @@ public class Utilities {
 	}
 	
 	/**
+	 * Fourth schedule evaluation condition
+	 * @param sch_num specific schedule number that student want to fulfill
+	 * @return returns the course on required of CSCE supporting Math Course (12 credits)that student need to take
+	 */
+	public ResultSet scheduleEval4(int sch_num, String sid){
+		ResultSet rset = null;
+		String sql = null;
+		try {
+			sql = "SELECT concat(c.dept,c.course_num) Course, semester_c , credit_hrs "+
+					"FROM semester s left outer join course c on concat(c.dept,c.course_num) = concat(s.dept,s.course_num) " +
+					"WHERE concat(c.dept,c.course_num) in " +
+					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
+					"WHERE f.req_num = 5) and concat(c.dept,c.course_num) not in " +
+					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
+					"WHERE sid = ? and sch_num = ? ) ";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.clearParameters();
+			stmt.setString(1,sid);
+			stmt.setInt(2,sch_num);
+			rset = stmt.executeQuery();
+		}catch (SQLException e){
+			System.out.println("createStatement " + e.getMessage() + sql);	
+		}
+		return rset;
+	}
+	
+	/**
+	 * Fifth schedule evaluation condition
+	 * @param sch_num specific schedule number that student want to fulfill
+	 * @return returns the course on required of CSCE supporting Math Course (12 credits)that student need to take
+	 */
+	public ResultSet scheduleEval5(int sch_num, String sid){
+		ResultSet rset = null;
+		String sql = null;
+		try {
+			sql = "SELECT concat(c.dept,c.course_num) Course, semester_c , credit_hrs "+
+					"FROM semester s left outer join course c on concat(c.dept,c.course_num) = concat(s.dept,s.course_num) " +
+					"WHERE concat(c.dept,c.course_num) in " +
+					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
+					"WHERE f.req_num = 5) and concat(c.dept,c.course_num) not in " +
+					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
+					"WHERE sid = ? and sch_num = ? ) ";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.clearParameters();
+			stmt.setString(1,sid);
+			stmt.setInt(2,sch_num);
+			rset = stmt.executeQuery();
+		}catch (SQLException e){
+			System.out.println("createStatement " + e.getMessage() + sql);	
+		}
+		return rset;
+	}
+	
+	/**
 	 * This method updates a PreReq for a certain course done by the advisor
 	 * @param oldPRNum PreReq number of the courses being updated 
 	 * @param oldPRDept Department name of the coursee being updated 

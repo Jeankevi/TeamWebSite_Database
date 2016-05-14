@@ -7,6 +7,7 @@
 <title>Update PreReq</title>
 </head>
 <body>
+<jsp:include page="head.jsp" />
 
 </body>
 </html>

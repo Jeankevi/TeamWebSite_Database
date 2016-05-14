@@ -9,7 +9,7 @@
 <title>Student Creates a New Schedule</title>
 </head>
 <body>
-
+<jsp:include page="head.jsp" />
 <h1>Form data from createSchedule.jsp</h1>
 
 The SID is:<%=request.getParameter("sid") %> <br>

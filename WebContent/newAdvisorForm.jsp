@@ -7,7 +7,7 @@
 <title> Student gets a new Adviser </title>
 </head>
 <body>
-
+<jsp:include page="head.jsp" />
 <h1> Student gets a new Adviser </h1>
 
 <form action="newAdvisor.jsp" method="get">

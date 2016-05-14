@@ -17,21 +17,7 @@
 <body>
 <jsp:include page="head.jsp"/>
 <h1>Main Menu</h1>
-<ol>
-
- 
-  <li> <a href = "openForm.jsp"> Login </a>  </li> 
-  <li> <a href = "createScheduleForm.jsp">  Create Schedule</a>  </li>
-
-  <li> <a href = "newAdvisorForm.jsp">  Student gets a new advisor </a>  </li>
-  <li> <a href = "deleteCourseForm.jsp">  Student deletes a course from their schedule</a>  </li>
-  <li> <a href = "updatePreReqForm.jsp">  Adviser updates a PreReq </a>  </li>
-
-  <li> <a href = "matchLastNameForm.jsp">Employees that match specified last name</a>  </li> 
-  <li> <a href = "close.jsp"> Close the DB </a> </li>
- 
-
-</ol>
+<h1>BAREFOOT RULES</h1>
 
 </body>
 </html>
