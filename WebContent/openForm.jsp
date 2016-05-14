@@ -22,12 +22,12 @@
 		<table>
 			<tr>
 				<td>User ID:</td>
-				<td><input type="text" name="user" value="" size="20">
+				<td><input type="text" name="user" value="<%= userInfo.getUser()%>" size="20" required>
 				</td>
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" name="password" value="" size="20">
+				<td><input type="password" name="password" value="" size="20" required>
 				</td>
 			</tr>
 
@@ -35,18 +35,6 @@
 		</table>
 		<input type="submit" value="Login">
 	</form>
-
-
-<form action="open.jsp" method="get">
-  <table> 
-   <tr> <td> User ID:     </td>  <td> <input type="text" name="user" value="" size="20">  </td> </tr>
-   <tr> <td> Password: </td>  <td> <input type="password" name="password" value="" size="20"> </td> </tr>
-  
-           
-  </table>
-  <input type="submit" value="Login">
-</form>
-
 
 </body>
 </html>

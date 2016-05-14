@@ -9,6 +9,7 @@
 <title>Student deletes a course from their schedule</title>
 </head>
 <body>
+<jsp:include page="head.jsp" />
 <h1>Form date from deleteCourseForm.jsp </h1>
 
 

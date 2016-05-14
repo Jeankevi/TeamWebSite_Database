@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="head.jsp" />
 <h1 style="text-align:center;color:red;">UNDER</h1>
 <h2 style="text-align:center;color:red;">CONSTRUCTION</h2>
 

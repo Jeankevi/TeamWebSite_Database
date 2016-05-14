@@ -23,13 +23,9 @@
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		ResultSet rset = null;
-		if (user.isEmpty() && password.isEmpty()) {%>
-			<% userInfo.setValid(false);%>
-			<jsp:forward page="openForm.jsp"></jsp:forward>
-		<% } else {
-			myUtil.openDef();
-			rset = myUtil.validUser(user, password);
-	}%>
+		myUtil.openDef();
+		rset = myUtil.validUser(user, password);
+	%>
 
 	<br>
 	<% if(rset.next()){ %>

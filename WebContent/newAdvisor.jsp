@@ -9,6 +9,7 @@
 <title>Student gets a new Adviser</title>
 </head>
 <body>
+<jsp:include page="head.jsp" />
 <h1>Form date from newAdviserForm.jsp </h1>
 
 The SID is:<%= request.getParameter("user") %> <br>

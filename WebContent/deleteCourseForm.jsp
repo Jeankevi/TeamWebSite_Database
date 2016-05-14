@@ -7,7 +7,7 @@
 <title> Student deletes a course </title>
 </head>
 <body>
-
+<jsp:include page="head.jsp" />
 <h1> Student deletes a course </h1>
 
 <form action="deleteCourse.jsp" method="get">

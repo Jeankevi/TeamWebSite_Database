@@ -8,6 +8,7 @@
 <title>Update PreReq</title>
 </head>
 <body>
+<jsp:include page="head.jsp" />
 
 The Department of the Course to be deleted:<%= request.getParameter("oDept") %> <br>
 The course number to be deleted: <%=request.getParameter("oNum") %> <br> <br>
