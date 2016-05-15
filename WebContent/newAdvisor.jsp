@@ -2,6 +2,7 @@
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,37 +11,35 @@
 </head>
 <body>
 <jsp:include page="head.jsp" />
-<h1>Form date from newAdviserForm.jsp </h1>
+<h1>Process Adding New Advisor</h1>
 
-The SID is:<%= request.getParameter("user") %> <br>
-	The FID is: <%=request.getParameter("fid") %> <br>
+	<p>The SID is: <%= request.getParameter("user") %></p>
+	<p>The FID is: <%=request.getParameter("fid") %></p>
 
-	
-
-	
 	<% String sid = request.getParameter("user");
-
 	   String fid = request.getParameter("fid");
-	   
-	   ResultSet rset = myUtil.newAdviser(fid,sid);
-	   
+	   ResultSet rset = null;
+	   rset = myUtil.newAdviser(fid,sid);
 	%> 
 	
-	<table>
+	<% if(rset != null){ %>
+		<%userInfo.setAddNewAdviser(true); %>
+		<h2 style="color:green;">Successful Updated new advisor for student</h2>
+	<%} else {%>
+		<%userInfo.setAddNewAdviser(false); %>
+		<jsp:forward page="newAdvisorForm.jsp"></jsp:forward>
+	<%} %>
+	
+	<!-- <table>
 		<tr>
 			<td>Student ID </td>
 			<td>Student's new Adviser ID </td>
 		
 			
 		</tr>
-<<<<<<< HEAD
-		
-		
-=======
 
->>>>>>> branch 'master' of https://github.com/Jeankevi/TeamWebSite_Database.git
 		<%
-			while (rset.next()) {
+			if(rset.next()) {
 			out.println("<tr>");
 			out.println("<td>" + rset.getString(1) + "</td>");
 			out.println("<td>" + rset.getString(2) + "</td>");
@@ -48,6 +47,8 @@ The SID is:<%= request.getParameter("user") %> <br>
 			}
 		%>
 		</table>
+		
+	-->
 	
 	
 

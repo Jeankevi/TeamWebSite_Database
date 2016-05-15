@@ -10,7 +10,26 @@ package dbUtil;
 public class UserData { 
 	private String user = "";
 	private boolean valid = true;
+	private boolean addNewAdviser = true;
 	
+	public void reset(){
+		user = "";
+		valid = true;
+		addNewAdviser = true;
+	}
+	
+	/**
+	 * @return the addNewAdviser
+	 */
+	public boolean isAddNewAdviser() {
+		return addNewAdviser;
+	}
+	/**
+	 * @param addNewAdviser the addNewAdviser to set
+	 */
+	public void setAddNewAdviser(boolean addNewAdviser) {
+		this.addNewAdviser = addNewAdviser;
+	}
 	public UserData(){
 		super();
 	}
