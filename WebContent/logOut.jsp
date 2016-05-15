@@ -13,10 +13,13 @@
 </head>
 <body>
 	<jsp:include page="head.jsp"/>
-	<% myUtil.closeDB(); %>
-	<h1 style="color: blue;">Successfully LogOut</h1>
-	<a href="index.jsp">Back to Home</a>
-
+	<% if(myUtil.getConn() != null){ 
+		 myUtil.closeDB();%>
+		 <jsp:forward page="logOut.jsp"></jsp:forward>
+    <%}else{%>
+		<h1 style="color: blue;">Successfully LogOut</h1>
+		<a href="index.jsp">Back to Home</a>
+	<%}%>
 
 </body>
 </html>

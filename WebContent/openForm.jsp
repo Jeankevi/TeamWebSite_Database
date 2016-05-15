@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,6 +12,11 @@
 <body>
 	<jsp:include page="head.jsp" />
 	<h1>Login</h1>
+		<%if(!userInfo.isValid()) {%> 
+		<h2 style="color: red;">Error Message</h2>
+		<p style="color: red;">Invalid user id and password. Please try again</p>
+		<%}	%>
+		
 	<form action="open.jsp" method="get">
 		<table>
 			<tr>
@@ -25,15 +29,11 @@
 				<td><input type="password" name="password" value="" size="20" required  >
 				</td>
 			</tr>
-			<br> The current value of connection is:<%= myUtil.getConn() %><br>
 
 
 		</table>
 		<input type="submit" value="Login">
-		<!-- <%if(!userInfo.isValid()) {%> 
-		<h2 style="color: red;">Error Message</h2>
-		<p style="color: red;">Invalid user id and password. Please try again</p>
-			<%}	%>-->
+		
 	</form>
 
 </body>
