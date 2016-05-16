@@ -32,8 +32,9 @@ li a {
 	padding: 14px 16px;
 	text-decoration: none;
 }
-li a:hover:not(.active ) {
-	background-color: #ddd;
+.menu li a:hover:not(.active ) {
+	color: white;
+	background-color: #4CAF50;
 }
 
 .menu li.active {

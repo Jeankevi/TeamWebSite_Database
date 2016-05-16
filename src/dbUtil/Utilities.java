@@ -64,6 +64,17 @@ public class Utilities {
 			stmt.setString(1,id);
 			stmt.setString(2, password);
 			rset = stmt.executeQuery();
+			if(rset.getString(5) == null){
+				sql = "SELECT * FROM advisor " +
+						"WHERE fid = ? and a_password = ? ";
+
+				// create a Statement and an SQL string for the statement
+				stmt = conn.prepareStatement(sql);
+				stmt.clearParameters();
+				stmt.setString(1,id);
+				stmt.setString(2, password);
+				rset = stmt.executeQuery();
+			}
 
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);

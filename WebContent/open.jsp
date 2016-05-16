@@ -17,6 +17,12 @@
 	<h1 style="color:blue;">Form Data From Login</h1>
 	The user is:<%= request.getParameter("user") %>
 	<br> The password is:<%="*******" %>
+	
+	<%
+	if(myUtil.getConn() == null){
+		myUtil.openDef();%>
+		<jsp:forward page="open.jsp"></jsp:forward>
+	<%}%>	
 
 	<%
 		String user = request.getParameter("user");
@@ -30,15 +36,24 @@
 	<% if(rset.next()){ %>
 	<% userInfo.setValid(true);%>
 	<h2 style="color:green;">Welcome to Smart Schedule</h2>
-	<p><b>
-		
-		<%= rset.getString(4) +", " + rset.getString(3)%></h2>
-	<p>
-		Year in:
-		<%= rset.getString(5) %></p>
-	<p>
-		Your Adviser FID:
-		<%= rset.getString(6) %></p>
+	
+	<%ResultSetMetaData rsmd = rset.getMetaData(); %>
+		<% if(rsmd.getColumnCount() > 4){ %>
+	
+			<p><b>		
+				<%= rset.getString(4) +", " + rset.getString(3)%></b></h2>
+			<p>
+				Year in:
+				<%= rset.getString(5) %></p>
+			<p>
+				Your Adviser FID:
+				<%= rset.getString(6) %></p>
+		<%}else{ %>
+			<P><b>Hi Professor</b></P>
+			<p><b>		
+				<%= rset.getString(3) +", " + rset.getString(2)%></h2>
+		<%} %>
+			
 	<%}else{ %>
 		<% userInfo.setValid(false);%>		
 		<% myUtil.closeDB();%>
