@@ -17,7 +17,6 @@
 	<h1 style="color:blue;">Form Data From Login</h1>
 	The user is:<%= request.getParameter("user") %>
 	<br> The password is:<%="*******" %>
-	<!--<br> The current value of connection is:<%= myUtil.getConn() %><br>-->
 
 	<%
 		String user = request.getParameter("user");
