@@ -64,6 +64,19 @@ public class Utilities {
 			stmt.setString(1,id);
 			stmt.setString(2, password);
 			rset = stmt.executeQuery();
+			
+			if(!rset.next()){
+				sql = null;
+				sql = "SELECT * FROM advisor " +
+						"WHERE fid = ? and a_password = ? ";
+				stmt = null;
+				stmt = conn.prepareStatement(sql);
+				stmt.clearParameters();
+				stmt.setString(1,id);
+				stmt.setString(2, password);
+				rset = stmt.executeQuery();
+			}
+				
 
 
 		} catch (SQLException e) {
@@ -126,14 +139,13 @@ public class Utilities {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
-					"VALUES ('"+sNum+"', '"+sid+"', "+yrPlan+", '"+type+"') ";
+					"VALUES ( "+sNum+", '"+sid+"', "+yrPlan+", '"+type+"') ";
 			int success = stmt.executeUpdate(sql);
 
 			if(success > 0){
 				Statement show = conn.createStatement();
-				show = conn.createStatement();
 				sql = null;
-				sql = "Select sch_num, sid, year_plan, type From Schedule Where sid = '"+ sid +"' ";
+				sql = "Select sch_num, year_plan, type From schedule Where sid = '"+sid+"' ";
 				rset = show.executeQuery(sql);
 			}
 

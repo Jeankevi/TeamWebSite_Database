@@ -28,7 +28,7 @@
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		ResultSet rset = null;
-		myUtil.openDef();
+		//myUtil.openDef();
 		rset = myUtil.validUser(user, password);
 	%>
 

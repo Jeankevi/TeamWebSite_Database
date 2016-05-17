@@ -1,5 +1,5 @@
 <%@ page import="java.sql.*" %>
-<jsp:useBean id="dbUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session"/> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -20,8 +20,7 @@ The Year plan is:  <%=request.getParameter("yrPlan") %> <br>
 The Degree type is: <%=request.getParameter("type") %> <br>
 
 
-	<%	
-		String sid = "";
+	<%	String sid = null;
 		if(!userInfo.isStudent()){	
 			sid = request.getParameter("sid");
 		}else{
@@ -29,26 +28,24 @@ The Degree type is: <%=request.getParameter("type") %> <br>
 		}	
 		String sNum = request.getParameter("sNum");	
 		int yrPlan = Integer.parseInt(request.getParameter("yrPlan"));		
-		String type = request.getParameter("type");	
-		ResultSet rset = dbUtil.createSchedule(sNum, sid, yrPlan, type);
+		String type = (request.getParameter("type")).toUpperCase();	
+		ResultSet rset = myUtil.createSchedule(sNum, sid, yrPlan, type);
 	%>
 	
-	<table>
+	<table border="1" cellpadding="5">
 		<tr>
-			<td>Schedule Number</td>
-			<td>Year Plan Number</td>
-			<td>Degree Type</td>
+			<th>Schedule Number </th> 
+			<th>Year Plan </th>
+			<th>Degree Type</th>
 		</tr>
+		<% while(rset.next()){ %>
+		     <tr>
+		        <td align="center"><%= rset.getInt(1) %></td>
+		        <td align="center"><%= rset.getInt(2)%></td>
+		        <td align="center"><%=rset.getString(3)%></td> 
+		     </tr>          
+	   <%} %> 
 		
-		<%	while(rset.next()){ 
-			out.println("<tr>");
-			out.println("<td>" + rset.getString(1) + "</td>");
-			out.println("<td>" + rset.getString(2) + "</td>");
-			out.println("<td>" + rset.getInt(1) + "</td>");
-			out.println("<td>" + rset.getString(3) + "</td>");
-			out.println("</tr>");
-			}
-		%>
 	</table>
 	
 	<a href="index.jsp">Back to Main Menu</a>

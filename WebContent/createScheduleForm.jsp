@@ -20,7 +20,7 @@
 
 <table>
 	<%if(!userInfo.isStudent()){ %>
-		<tr> <td> Student ID: </td> <td> <input type="text" name="SID" value="" size="20" required> </td> </tr>
+		<tr> <td> Student ID: </td> <td> <input type="text" name="sid" value="" size="20" required> </td> </tr>
 	<%} %>
 	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20" required> </td> </tr>
 	<tr> <td> Year Plan Number: </td> <td> <input type="text" name="yrPlan" value="" size="20" required> </td> </tr>
