@@ -31,6 +31,7 @@ public class UserData {
 		user = "";
 		valid = true;
 		addNewAdviser = true;
+		student = true;
 	}
 	
 	/**

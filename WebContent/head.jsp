@@ -55,6 +55,7 @@ li a {
 	<% if(myUtil.getConn() != null) {%>
 		<li><a href="index.jsp">Home</a></li>	
 		<li> <a href = "createScheduleForm.jsp">Create Schedule</a></li>
+		<li> <a href = "evaluateSchForm.jsp">Evaluate Schedule</a></li>
 		<%if(!userInfo.isStudent()){ %>
 	    	<li> <a href = "newAdvisorForm.jsp">Add New Advisor</a></li>	    
 	    	<li> <a href = "updatePreReqForm.jsp">Updates PreReq</a></li>
