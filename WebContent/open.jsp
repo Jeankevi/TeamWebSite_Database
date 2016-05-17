@@ -28,20 +28,20 @@
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		ResultSet rset = null;
-		//myUtil.openDef();
 		rset = myUtil.validUser(user, password);
 	%>
 
 	<br>
-	<% if(rset.next()){ %>
+	<%if(rset.next()){ %>
 	<% userInfo.setValid(true);%>
+	
 	<h2 style="color:green;">Welcome to Smart Schedule</h2>
 	
 	<%ResultSetMetaData rsmd = rset.getMetaData(); %>
 		<% if(rsmd.getColumnCount() > 4){ %>
 			<% userInfo.setStudent(true); %>
 			<p><b>		
-				<%= rset.getString(4) +", " + rset.getString(3)%></b></h2>
+				<%= rset.getString(4) +", " + rset.getString(3)%></b>
 			<p>
 				Year in:
 				<%= rset.getString(5) %></p>
@@ -56,8 +56,9 @@
 		<%} %>
 			
 	<%}else{ %>
-		<% userInfo.setValid(false);%>		
-		<% myUtil.closeDB();%>
+		<% userInfo.setValid(false);	
+		   myUtil.closeDB();
+		   System.out.println("Invalid User Data");%>
 		<jsp:forward page="openForm.jsp"></jsp:forward>
 	<%} %>
 	<br>

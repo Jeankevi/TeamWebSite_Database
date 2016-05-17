@@ -63,18 +63,27 @@ public class Utilities {
 			stmt.clearParameters();
 			stmt.setString(1,id);
 			stmt.setString(2, password);
-			rset = stmt.executeQuery();
 			
-			if(!rset.next()){
+			PreparedStatement stmt2 = conn.prepareStatement(sql);
+			stmt2.clearParameters();
+			stmt2.setString(1,id);
+			stmt2.setString(2, password);
+			
+			rset = stmt.executeQuery();
+			ResultSet copy = stmt2.executeQuery();
+			
+			if(copy.next()){
+				return rset;
+			}
+			else{
 				sql = null;
 				sql = "SELECT * FROM advisor " +
 						"WHERE fid = ? and a_password = ? ";
-				stmt = null;
-				stmt = conn.prepareStatement(sql);
-				stmt.clearParameters();
-				stmt.setString(1,id);
-				stmt.setString(2, password);
-				rset = stmt.executeQuery();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setString(1,id);
+				pstmt.setString(2, password);
+				rset = pstmt.executeQuery();
 			}
 				
 

@@ -18,7 +18,7 @@
 		<p style="color: red;">Invalid user id and password. Please try again</p>
 	<%}	%>
 
-	<form action="open.jsp" method="get">
+	<form action="open.jsp" method="post">
 		<table>
 			<tr>
 				<td>User ID:</td>
