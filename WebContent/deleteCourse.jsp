@@ -30,9 +30,13 @@
 	   }else{
 		   user = userInfo.getUser();
 	   }
-	   String test = myUtil.deleteCourse(schnum,crsnum,dept, user);	   
+	   int success = myUtil.deleteCourse(schnum,crsnum,dept, user);	   
 	%> 
-	<p style="color:magenta";><b><%= test %></b></p>
+	<%if(success > 0){ %>
+		<p style="color:green";><b>The course was deleted</b></p>
+	<%}else{ %>
+		<p style="color:red";><b>The course was not deleted, or the course is not there!</b></p>
+	<%} %>
 	<a href="index.jsp">Back to Main Menu</a>	
 		  
 		  
