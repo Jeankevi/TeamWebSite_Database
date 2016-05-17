@@ -184,7 +184,7 @@ public class AccessDB {
 		System.out.print("Please enter the course department(CSCE): ");
 		String dept = keyboard.nextLine();
 		
-		String result = testObj.deleteCourse(sNum, cNum, dept, sid);
+		int result = testObj.deleteCourse(sNum, cNum, dept, sid);
 		/*if(result == 1){
 			System.out.println("Delete successful");
 		}
