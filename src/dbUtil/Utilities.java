@@ -64,6 +64,19 @@ public class Utilities {
 			stmt.setString(1,id);
 			stmt.setString(2, password);
 			rset = stmt.executeQuery();
+			
+			
+			if(!rset.next()){
+				sql = "SELECT * FROM advisor " +
+						"WHERE fid = ? and a_password = ? ";
+
+				// create a Statement and an SQL string for the statement
+				stmt = conn.prepareStatement(sql);
+				stmt.clearParameters();
+				stmt.setString(1,id);
+				stmt.setString(2, password);
+				rset = stmt.executeQuery();
+			}
 
 
 		} catch (SQLException e) {
@@ -185,11 +198,12 @@ public class Utilities {
 	 */
 
 
-	public String deleteCourse(int sNum, String cNum, String dept, String sid){
+	public int deleteCourse(int sNum, String cNum, String dept, String sid){
 
 		String sql = null;
 
 		String test = "The course was deleted";
+		int success = -1;
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -198,7 +212,7 @@ public class Utilities {
 			sql = "DELETE FROM belongs_to "+
 					"WHERE course_num = '"+cNum+"' and sch_num = "+sNum+" and "+ 
 					"dept = '"+dept+"' and sid = '" + sid + "'";
-			stmt.executeUpdate(sql);
+			success = stmt.executeUpdate(sql);
 
 			//EndDEBUG
 
@@ -207,7 +221,7 @@ public class Utilities {
 			test = "The course was not deleted";
 		}
 
-		return test;
+		return success;
 	}
 
 	/**
@@ -391,11 +405,8 @@ public class Utilities {
 
 
 	public String updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
-
 		String sql = null;
-
 		String test = "The PreReq was updated";
-
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -405,7 +416,7 @@ public class Utilities {
 			int update = stmt.executeUpdate(sql);
 			sql = "insert into pre_req "+
 					"values ('"+cDept+"','"+cNum+"','"+newPRDept+"','"+newPRNum+"')";
-			update += stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql);
 			//EndDEBUG
 			System.out.print(oldPRDept+" "+oldPRNum+" replaced with "+newPRDept+" "+newPRNum+"\n");						
 		} catch (SQLException e) {
