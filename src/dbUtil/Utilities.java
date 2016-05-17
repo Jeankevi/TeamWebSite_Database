@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class Utilities {
 
-
 	private Connection conn = null; // Connection object
 
 	/**
@@ -141,24 +140,23 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return result
 	 */
-	public int createSchedule(String sNum, String sid,int yrPlan, String type){
-		//ResultSet rset = null;
+	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
+		ResultSet rset = null;
 		String sql = null;
-		int success = 0;
 
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
 					"VALUES ( "+sNum+", '"+sid+"', "+yrPlan+", '"+type+"') ";
-			success = stmt.executeUpdate(sql);
+			int success = stmt.executeUpdate(sql);
 
-			/*if(success > 0){
+			if(success > 0){
 				Statement show = conn.createStatement();
 				sql = null;
 				sql = "Select sch_num, year_plan, type From schedule Where sid = '"+sid+"' ";
 				rset = show.executeQuery(sql);
-			}*/
+			}
 
 
 		} catch (SQLException e) {
@@ -166,7 +164,7 @@ public class Utilities {
 
 		}
 
-		return success;
+		return rset;
 	}
 
 	/**
@@ -439,3 +437,4 @@ public class Utilities {
 	}
 
 }
+

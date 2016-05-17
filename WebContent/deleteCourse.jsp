@@ -38,7 +38,6 @@
 		   user = userInfo.getUser();
 	   }
 	   int success = myUtil.deleteCourse(schnum,crsnum,dept, user);	   
-
 	%> 
 	<%if(success > 0){ %>
 		<p style="color:green";><b>The course was deleted</b></p>
