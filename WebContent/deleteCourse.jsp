@@ -14,7 +14,7 @@
 <title>Student deletes a course from their schedule</title>
 </head>
 <body>
-<jsp:include page="head.jsp" />
+
 <h1>Process Deleting Course</h1>
 
 

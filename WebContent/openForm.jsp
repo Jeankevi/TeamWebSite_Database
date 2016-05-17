@@ -34,8 +34,7 @@
 
 		</table>
 		<input type="submit" value="Login">
-
 	</form>
-
+	<form action="signUpForm.jsp" method="post"></form>
 </body>
 </html>

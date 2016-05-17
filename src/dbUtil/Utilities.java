@@ -132,6 +132,8 @@ public class Utilities {
 			System.err.println("Failed to close database connection: " + e);
 		}
 	}// closeDB
+	
+	//public void createStudent(String sid
 
 	/**
 	 * This method creates a new schedule for a student

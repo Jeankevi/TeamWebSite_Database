@@ -15,7 +15,6 @@
 <title> Student creates a new Schedule </title>
 </head>
 <body>
-<jsp:include page="head.jsp" />
 <h1> Student creates a new Schedule </h1>
 
 <form action = "createSchedule.jsp" method="get">

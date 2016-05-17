@@ -17,7 +17,6 @@
 
 </head>
 <body>
-	<jsp:include page="head.jsp" />
 	<h1>Student gets a new Adviser</h1>
 
 	<%if(!userInfo.isAddNewAdviser()){ %>

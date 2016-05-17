@@ -14,7 +14,6 @@
 <title> Adviser Updates PreReq </title>
 </head>
 <body>
-<jsp:include page="head.jsp" />
 <h1> Update PreReq </h1>
 
 <form action="updatePreReq.jsp" method="get">
