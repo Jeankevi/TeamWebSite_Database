@@ -16,8 +16,10 @@
 </head>
 <body>
 <jsp:include page="head.jsp"/>
+
 <h1>Main Menu</h1>
 <h1>BAREFOOT RULES</h1>
+
 
 </body>
 </html>
