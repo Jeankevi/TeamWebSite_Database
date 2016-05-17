@@ -11,7 +11,22 @@ public class UserData {
 	private String user = "";
 	private boolean valid = true;
 	private boolean addNewAdviser = true;
+	private boolean student = true;
 	
+	/**
+	 * @return the student
+	 */
+	public boolean isStudent() {
+		return student;
+	}
+
+	/**
+	 * @param student the student to set
+	 */
+	public void setStudent(boolean student) {
+		this.student = student;
+	}
+
 	public void reset(){
 		user = "";
 		valid = true;

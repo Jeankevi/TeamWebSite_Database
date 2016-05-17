@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session"/> 
 <% if(myUtil.getConn() == null){%>
 	<jsp:forward page="openForm.jsp"></jsp:forward>
 <% }%>
@@ -18,10 +19,12 @@
 
 
 <table>
-	<tr> <td> Student ID: </td> <td> <input type="text" name="SID" value="" size="20"> </td> </tr>
-	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20"> </td> </tr>
-	<tr> <td> Year Plan Number: </td> <td> <input type="text" name="yrPlan" value="" size="20"> </td> </tr>
-	<tr> <td> Degree Type: </td> <td> <input type="text" name="type" value="" size="20"> </td> </tr>
+	<%if(!userInfo.isStudent()){ %>
+		<tr> <td> Student ID: </td> <td> <input type="text" name="SID" value="" size="20" required> </td> </tr>
+	<%} %>
+	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20" required> </td> </tr>
+	<tr> <td> Year Plan Number: </td> <td> <input type="text" name="yrPlan" value="" size="20" required> </td> </tr>
+	<tr> <td> Degree Type: </td> <td> <input type="text" name="type" value="" size="20" required> </td> </tr>
 </table>
 <input type="submit" value="Create Schedule">
 
