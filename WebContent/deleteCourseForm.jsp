@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session"/> 
 <% if(myUtil.getConn() == null){%>
 	<jsp:forward page="openForm.jsp"></jsp:forward>
 <% }%>
@@ -17,11 +18,13 @@
 <form action="deleteCourse.jsp" method="get">
 <table> 
 
-	<tr> <td> User ID:     </td>  <td> <input type="text" name="user" value="" size="20">  </td> </tr>
-   <tr> <td> Course Number to be deleted: </td>  <td> <input type="text" name="crsnum" value="" size="20"> </td> </tr>
-   <tr> <td> Department of the course to be deleted: </td>  <td> <input type="text" name="dept" value="" size="20"> </td> </tr>
-   <tr> <td> Schedule Number that the course is on: </td>  <td> <input type="text" name="schnum" value="" size="20"> </td> </tr>
-   <tr> <td> SID is: </td>  <td> <input type="text" name="sid" value="" size="20"> </td> </tr>
+   <tr> <td> Course Number to be deleted: </td>  <td> <input type="text" name="crsnum" value="" size="20" required> </td> </tr>
+   <tr> <td> Department of the course to be deleted: </td>  <td> <input type="text" name="dept" value="" size="20" required> </td> </tr>
+   <tr> <td> Schedule Number that the course is on: </td>  <td> <input type="text" name="schnum" value="" size="20" required> </td> </tr>
+   <%if(!userInfo.isStudent()){ %>
+   	<tr> <td> SID is: </td>  <td> <input type="text" name="sid" value="" size="20" required> </td> </tr>
+   <%} %>
+   
 	
   </table>
   <input type="submit" value="Delete Course">

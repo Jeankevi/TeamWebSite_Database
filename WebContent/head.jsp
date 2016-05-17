@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,9 +55,11 @@ li a {
 	<% if(myUtil.getConn() != null) {%>
 		<li><a href="index.jsp">Home</a></li>	
 		<li> <a href = "createScheduleForm.jsp">Create Schedule</a></li>
-	    <li> <a href = "newAdvisorForm.jsp">Add New Advisor</a></li>
+		<%if(!userInfo.isStudent()){ %>
+	    	<li> <a href = "newAdvisorForm.jsp">Add New Advisor</a></li>	    
+	    	<li> <a href = "updatePreReqForm.jsp">Updates PreReq</a></li>
+	    <%} %>
 	    <li> <a href = "deleteCourseForm.jsp">Deletes a Course</a></li>
-	    <li> <a href = "updatePreReqForm.jsp">Updates PreReq</a></li>
 	    <li style="float:right; border-left:1px solid #bbb"><a href="logOut.jsp">LogOut</a></li>		  
 	<%}else{ %>
 		<li><a href="index.jsp">Home</a></li>	

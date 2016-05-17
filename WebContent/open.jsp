@@ -39,7 +39,7 @@
 	
 	<%ResultSetMetaData rsmd = rset.getMetaData(); %>
 		<% if(rsmd.getColumnCount() > 4){ %>
-	
+			<% userInfo.setStudent(true); %>
 			<p><b>		
 				<%= rset.getString(4) +", " + rset.getString(3)%></b></h2>
 			<p>
@@ -49,9 +49,10 @@
 				Your Adviser FID:
 				<%= rset.getString(6) %></p>
 		<%}else{ %>
+			<% userInfo.setStudent(false); %>
 			<P><b>Hi Professor</b></P>
 			<p><b>		
-				<%= rset.getString(3) +", " + rset.getString(2)%></h2>
+				<%= rset.getString(3) +", " + rset.getString(2)%></b></p>
 		<%} %>
 			
 	<%}else{ %>

@@ -64,17 +64,7 @@ public class Utilities {
 			stmt.setString(1,id);
 			stmt.setString(2, password);
 			rset = stmt.executeQuery();
-			if(rset.getString(5) == null){
-				sql = "SELECT * FROM advisor " +
-						"WHERE fid = ? and a_password = ? ";
 
-				// create a Statement and an SQL string for the statement
-				stmt = conn.prepareStatement(sql);
-				stmt.clearParameters();
-				stmt.setString(1,id);
-				stmt.setString(2, password);
-				rset = stmt.executeQuery();
-			}
 
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
@@ -128,28 +118,24 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return result
 	 */
-
-	public int createSchedule(String sNum, int yrPlan, String type, String sid){
-
+	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
+		ResultSet rset = null;
 		String sql = null;
-
-		int result = 0;
 
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
-
 			sql = "INSERT INTO schedule (sch_num, sid, year_plan, type) " +
 					"VALUES ('"+sNum+"', '"+sid+"', "+yrPlan+", '"+type+"') ";
+			int success = stmt.executeUpdate(sql);
 
-			result = stmt.executeUpdate(sql);
-			/*
-			Statement show = conn.createStatement();
-			show = conn.createStatement();
-			sql = null;
-			sql = "Select sch_num, sid, year_plan, type From Schedule Where sid = '"+ sid +"' ";
-			rset = show.executeQuery(sql);
-			 */
+			if(success > 0){
+				Statement show = conn.createStatement();
+				show = conn.createStatement();
+				sql = null;
+				sql = "Select sch_num, sid, year_plan, type From Schedule Where sid = '"+ sid +"' ";
+				rset = show.executeQuery(sql);
+			}
 
 
 		} catch (SQLException e) {
@@ -157,8 +143,9 @@ public class Utilities {
 
 		}
 
-		return result;
+		return rset;
 	}
+
 	/**
 	 * This method assigns a student a new advisor 
 	 * @param fid Faculty's unique ID number 
@@ -378,7 +365,7 @@ public class Utilities {
 					"FROM semester s left outer join course c on concat(c.dept,c.course_num) = concat(s.dept,s.course_num) " +
 					"WHERE concat(c.dept,c.course_num) in " +
 					"(SELECT concat(f.dept,f.course_num) from fulfills f left outer join requirements r on f.req_num = r.req_num " +
-					"WHERE f.req_num = 5) and concat(c.dept,c.course_num) not in " +
+					"WHERE f.req_num = 1) and concat(c.dept,c.course_num) not in " +
 					"(SELECT concat(b.dept,b.course_num) from belongs_to b " + 
 					"WHERE sid = ? and sch_num = ? ) ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
