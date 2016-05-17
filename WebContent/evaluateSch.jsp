@@ -38,7 +38,7 @@
 	<%if(rset1 == null) {%>
 		<h2 style="color:green">1. You have fulfilled required CSCE courses (12 credits)</h2>
 	<%}else{ %>	
-		<h2 style="color:red">1. There are classes you should take to fulfill the degree</h2>
+		<h2 style="color:red">1. There are classes required CSCE courses (12 credits)</h2>
 		<table border="1" cellpadding="5">
 			<tr>
 				<th>Course</th>
@@ -57,9 +57,9 @@
 	<%} %>
 	
 	<%if(rset2 == null) {%>
-		<h3 style="color:green">1. You have fulfilled required of CSCE 367 or CSCE 390 (4 credits)</h3>
+		<h2 style="color:green">2. You have fulfilled required of CSCE 367 or CSCE 390 (4 credits)</h2>
 	<%}else{ %>	
-	<h3 style="color:red">2. Please choose 1 course in this list</h3>
+	<h2 style="color:red">2. Please choose 1 course required of CSCE 367 or CSCE 390 (4 credits)</h2>
 	<table border="1" cellpadding="5">
 		<tr>
 			<th>Course</th>
@@ -82,9 +82,9 @@
 	<%} %>
 	
 	<%if(rset3 == null) {%>
-		<h4 style="color:green">1. You have fulfilled required of CSCE 367 or CSCE 390 (4 credits)</h4>
+		<h2 style="color:green">3. You have fulfilled required of CSCE electives (12 credits)</h2>
 	<%}else{ %>	
-	<h4 style="color:red">Please choose 3 in this list</h4>
+	<h2 style="color:red">3. Please choose 3 courses required of CSCE electives (12 credits)</h2>
 	<table border="1" cellpadding="5">
 		<tr>
 			<th>Course</th>
@@ -106,8 +106,10 @@
 	<br>
 	<%} %>
 	
-	
-	<h5 style="color:red">There are classes you should take to support the degree</h5>
+	<%if(rset4 == null) {%>
+		<h2 style="color:green">4. You have fulfilled required of CSCE supporting Math Course (12 credits)</h2>
+	<%}else{ %>	
+	<h2 style="color:red">4. Please complete courses required of CSCE supporting Math Course (12 credits)</h2>
 	<table border="1" cellpadding="5">
 		<tr>
 			<th>Course</th>
@@ -127,6 +129,7 @@
 		%>
 	</table>
 	<br>
+	<%} %>
 
 
 	<a href="index.jsp">Back to Main Menu</a>
