@@ -10,7 +10,6 @@ package dbUtil;
 public class UserData { 
 	private String user = "";
 	private boolean valid = true;
-<<<<<<< HEAD
 	private boolean addNewAdviser = true;
 	private boolean student = true;
 	
@@ -46,9 +45,6 @@ public class UserData {
 	public void setAddNewAdviser(boolean addNewAdviser) {
 		this.addNewAdviser = addNewAdviser;
 	}
-=======
-	
->>>>>>> refs/remotes/origin/caleb
 	public UserData(){
 		super();
 	}
