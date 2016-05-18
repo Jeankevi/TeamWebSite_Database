@@ -13,8 +13,10 @@
 <jsp:include page="head.jsp"/>
 	<h1>Evaluate Schedule</h1>
 
+	<%if(!userInfo.isStudent()){ %>
 	The Student ID is:
 	<%=request.getParameter("sid") %>
+	<%} %>
 	<br> The Schedule Number is:
 	<%=request.getParameter("schNum") %>
 	<br>
