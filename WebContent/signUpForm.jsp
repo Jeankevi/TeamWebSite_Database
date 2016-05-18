@@ -13,7 +13,7 @@
 
 	<%if(!userInfo.isValid()) {%>
 		<h2 style="color: red;">Error Message</h2>
-		<p style="color: red;">You are already signed up as a student</p>
+		<p style="color: red;">Invalid input or user already exists</p>
 	<%}	%>
 
 	<form action="signUp.jsp" method="post">

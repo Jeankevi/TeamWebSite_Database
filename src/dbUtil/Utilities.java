@@ -137,33 +137,50 @@ public class Utilities {
 		String sql = null;
 		ResultSet rset = null;
 		
-		try {
-			// create a Statement and an SQL string for the statement
-			
-			sql = "INSERT INTO student (sid, s_password, s_first, s_last, yr_in) " +
-					"VALUES (?,?,?,?,?) ";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.clearParameters();
-			pstmt.setString(1,sid);
-			pstmt.setString(2, passwrd);
-			pstmt.setString(3, fname);
-			pstmt.setString(4, lname);
-			pstmt.setInt(5, yr_in);
-			int success = pstmt.executeUpdate();
-			
-			if(success > 0){
-				Statement show = conn.createStatement();
-				sql = null;
-				sql = "SELECT * FROM student WHERE sid = '"+sid+"'";
-				rset = show.executeQuery(sql);
+		if(validSignUp(sid,fname,lname,passwrd,yr_in) == 1){
+			//fname = fname.substring(0, 1).toUpperCase() + fname.substring(1).toLowerCase();
+		
+			try {
+				// create a Statement and an SQL string for the statement
+				
+				sql = "INSERT INTO student (sid, s_password, s_first, s_last, yr_in) " +
+						"VALUES (?,?,?,?,?) ";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setString(1,sid);
+				pstmt.setString(2, passwrd);
+				pstmt.setString(3, fname);
+				pstmt.setString(4, lname);
+				pstmt.setInt(5, yr_in);
+				int success = pstmt.executeUpdate();
+				
+				if(success > 0){
+					Statement show = conn.createStatement();
+					sql = null;
+					sql = "SELECT * FROM student WHERE sid = '"+sid+"'";
+					rset = show.executeQuery(sql);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("createStatement " + e.getMessage() + sql);
+	
 			}
-			
-		} catch (SQLException e) {
-			System.out.println("createStatement " + e.getMessage() + sql);
-
 		}
-
 		return rset;
+	}
+	
+	public int validSignUp(String sid, String fname, String lname, String passwrd, int yr_in){
+		int success = -1;
+		if(sid.length() == 8 && passwrd.length() > 5 && passwrd.length() < 16 && yr_in > 2000 && yr_in < 2050){
+			try{
+				Integer.parseInt(sid);
+				success = 1;
+			}
+			catch(NumberFormatException e){
+				success = -1;
+			}
+		}
+		return success;
 	}
 
 	/**

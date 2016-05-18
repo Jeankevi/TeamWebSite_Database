@@ -30,7 +30,7 @@
 	%>
 
 	<br>
-	<%if(rset.next()){ %>
+	<%if(rset != null){ %>
 		<%userInfo.setValid(true);%>
 		<h2 style="color:green;">Successfully Created an Account</h2>
 		<form action="openForm.jsp" method="post"><input type="submit" value="Login"></form>
