@@ -35,6 +35,6 @@
 		</table>
 		<input type="submit" value="Login">
 	</form>
-	<form action="signUpForm.jsp" method="post"></form>
+	<form action="signUpForm.jsp" method="post"><input type="submit" value="Sign Up"></form>
 </body>
 </html>

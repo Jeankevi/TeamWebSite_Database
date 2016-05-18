@@ -133,7 +133,38 @@ public class Utilities {
 		}
 	}// closeDB
 	
-	//public void createStudent(String sid
+	public ResultSet createStudent(String sid, String fname, String lname, String passwrd, int yr_in){
+		String sql = null;
+		ResultSet rset = null;
+		
+		try {
+			// create a Statement and an SQL string for the statement
+			
+			sql = "INSERT INTO student (sid, s_password, s_first, s_last, yr_in) " +
+					"VALUES (?,?,?,?,?) ";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.clearParameters();
+			pstmt.setString(1,sid);
+			pstmt.setString(2, passwrd);
+			pstmt.setString(3, fname);
+			pstmt.setString(4, lname);
+			pstmt.setInt(5, yr_in);
+			int success = pstmt.executeUpdate();
+			
+			if(success > 0){
+				Statement show = conn.createStatement();
+				sql = null;
+				sql = "SELECT * FROM student WHERE sid = '"+sid+"'";
+				rset = show.executeQuery(sql);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage() + sql);
+
+		}
+
+		return rset;
+	}
 
 	/**
 	 * This method creates a new schedule for a student

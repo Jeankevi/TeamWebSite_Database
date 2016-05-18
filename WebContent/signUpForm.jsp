@@ -11,7 +11,7 @@
 <jsp:include page="head.jsp" />
 	<h1>Sign Up</h1>
 
-	<%if(userInfo.isValid()) {%>
+	<%if(!userInfo.isValid()) {%>
 		<h2 style="color: red;">Error Message</h2>
 		<p style="color: red;">You are already signed up as a student</p>
 	<%}	%>
@@ -20,7 +20,7 @@
 		<table>
 			<tr>
 				<td>User ID:</td>
-				<td><input type="text" name="user" value="<%= userInfo.getUser()%>" size="20" required>
+				<td><input type="text" name="user" value="" size="20" required>
 				</td>
 			</tr>
 			<tr>
