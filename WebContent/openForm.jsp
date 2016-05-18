@@ -33,8 +33,8 @@
 
 
 		</table>
-		<input type="submit" value="Login">
-	</form>
+		<br><input type="submit" value="Login">
+	</form><br>
 	<form action="signUpForm.jsp" method="post"><input type="submit" value="Sign Up"></form>
 </body>
 </html>
