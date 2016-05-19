@@ -183,9 +183,6 @@ public class Utilities {
 		return success;
 	}
 	
-
-	
-	
 	public int validSchedule(String sid, int schNum){
 		int success = -1;
 		
@@ -569,4 +566,3 @@ public class Utilities {
 	}
 
 }
-
