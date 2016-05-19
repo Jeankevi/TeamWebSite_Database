@@ -31,10 +31,20 @@
 	}
 		int schNum = Integer.parseInt(request.getParameter("schNum"));
 		
+		if(myUtil.validSchedule(sid, schNum) != 2){
+			userInfo.setValidSchedule(false);%>
+			<jsp:forward page="evaluateSchForm.jsp"></jsp:forward>
+			<%
+		}
+		else{
+			userInfo.setValidSchedule(true);
+		}
+		
 		ResultSet rset1 = myUtil.scheduleEval1(schNum,sid);
 		ResultSet rset2 = myUtil.scheduleEval2(schNum,sid);
 		ResultSet rset3 = myUtil.scheduleEval3(schNum,sid);
 		ResultSet rset4 = myUtil.scheduleEval4(schNum,sid);
+		
 	%>
 
 	<%if(rset1 == null) {%>

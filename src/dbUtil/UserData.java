@@ -12,6 +12,7 @@ public class UserData {
 	private boolean valid = true;
 	private boolean addNewAdviser = true;
 	private boolean student = true;
+	private boolean validSchedule = true;
 	
 	/**
 	 * @return the student
@@ -32,6 +33,15 @@ public class UserData {
 		valid = true;
 		addNewAdviser = true;
 		student = true;
+		validSchedule = true;
+	}
+	
+	public boolean isValidSchedule(){
+		return validSchedule;
+	}
+	
+	public void setValidSchedule(boolean valSch){
+		this.validSchedule = valSch;
 	}
 	
 	/**
