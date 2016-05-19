@@ -14,8 +14,11 @@
 <body>
 <jsp:include page="head.jsp"/>
 <h1>Evaluation the schedule </h1>
-
-<form action="evaluateSch.jsp" method="get">
+<%if(!userInfo.isValidSchedule()){ %>
+	<h2 style="color: red;">Error Message</h2>
+	<p style="color: red;">Invalid SID or Schedule Number. Schedule number must be between 1 and 9</p>
+<%} %>
+<form action="evaluateSch.jsp" method="post">
 <table> 
 
 	<%if(!userInfo.isStudent()){ %>
@@ -23,10 +26,6 @@
    	<%} %>
    <tr> <td> Schedule Num: </td>  <td> <input type="text" name="schNum" value="" size="20"> </td> </tr>
   
-
-
-
-
   </table>
   <input type="submit" value="Submit">
 </form>

@@ -182,6 +182,38 @@ public class Utilities {
 		}
 		return success;
 	}
+	
+	public int validSchedule(String sid, int schNum){
+		int success = -1;
+		
+			if(sid.length() == 8 && schNum < 10 && schNum > 0){
+				ResultSet rset = null;
+				success += 1;
+				
+				try{	
+					Integer.parseInt(sid);
+					success += 1;
+				}
+				catch(NumberFormatException e){
+					success -= 1;
+				}
+				if(success == 1){
+					try {
+						Statement stmt = conn.createStatement();
+						String sql = "SELECT sid FROM student WHERE sid= '"+sid+"'";
+						rset = stmt.executeQuery(sql);
+						if(rset.next()){
+							success += 1;
+						}
+					} catch (SQLException e) {
+						success -= 1;
+					}
+				}
+				
+			}
+		
+		return success;
+	}
 
 	/**
 	 * This method creates a new schedule for a student
