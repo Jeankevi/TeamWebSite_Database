@@ -16,6 +16,10 @@
 </head>
 <body>
 <h1> Student creates a new Schedule </h1>
+<%if(!userInfo.isValidSchedule()){ %>
+	<h2 style="color: red;">Error Message</h2>
+	<p style="color: red;">Invalid Schedule Number. Schedule number must be between 1 and 9</p>
+<%} %>
 
 <form action = "createSchedule.jsp" method="get">
 
@@ -26,8 +30,25 @@
 		<tr> <td> Student ID: </td> <td> <input type="text" name="sid" value="" size="20" required> </td> </tr>
 	<%} %>
 	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20" required> </td> </tr>
-	<tr> <td> Year Plan Number: </td> <td> <input type="text" name="yrPlan" value="" size="20" required> </td> </tr>
-	<tr> <td> Degree Type: </td> <td> <input type="text" name="type" value="" size="20" required> </td> </tr>
+	
+	
+	
+	<tr> <td> Year Plan Number: 
+<select name = "yrPlan">
+  <option value="1" selected = "yrPlan"> 1 </option>
+  <option value="2" selected = "yrPlan"> 2</option>
+</select>
+	</td> <td>
+	
+	
+	<tr> <td> Degree Type:  
+	<select name = "type">
+  <option value="BA" selected = "type"> BA</option>
+  <option value="BS" selected = "type" >BS</option>
+</select>
+	</td> </tr>
+	
+	
 </table>
 <input type="submit" value="Create Schedule">
 
