@@ -485,6 +485,53 @@ public class Utilities {
 		return test;
 
 	}
+	
+	/**
+	 * Get single schedule
+	 * @param id student sid
+	 * @param sch_num student schedule number
+	 * @return return single schedule with match id and sch_num
+	 */
+	public ResultSet getCurrentSchedule(String sid, int sch_num){
+		String sql = null;
+		ResultSet rset = null;
+		
+		try {
+			Statement stmt = conn.createStatement();
+
+			sql = "SELECT concat(dept,course_num) Course, semester_c, year, grade "
+					+ "FROM belongs_to WHERE sid = '"+sid+"' and sch_num = '"+sch_num+"' ";
+			rset=stmt.executeQuery(sql);
+				
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage() + sql);
+		}
+		
+		return rset;
+	}
+	
+	/**
+	 * Get all schedule number
+	 * @param id student sid
+	 * @param sch_num student schedule number
+	 * @return return single schedule with match id and sch_num
+	 */
+	public ResultSet getAllScheduleNum(String sid){
+		String sql = null;
+		ResultSet rset = null;
+		
+		try {
+			Statement stmt = conn.createStatement();
+
+			sql = "SELECT sch_num  FROM schedule WHERE sid = '"+sid+"' ";
+			rset=stmt.executeQuery(sql);
+				
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage() + sql);
+		}
+		
+		return rset;
+	}
 
 }
 
