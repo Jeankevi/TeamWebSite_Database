@@ -7,6 +7,10 @@ package dbUtil;
  * @author hoangja
  *
  */
+/**
+ * @author holmla
+ *
+ */
 public class UserData { 
 	private String user = "";
 	private boolean valid = true;
@@ -72,7 +76,7 @@ public class UserData {
 	public boolean isCourseOnSchedule(){
 		return courseOnSchedule;
 	}
-	
+
 	public void setValidCourse(boolean valCrs){
 		this.validCourse = valCrs;
 	}

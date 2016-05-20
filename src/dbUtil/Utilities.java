@@ -95,7 +95,14 @@ public class Utilities {
 		return rset;
 
 	}// validUser
-	
+	/**
+	 * This method tells the user if their course number was valid or not by returning an int that represents success or failure 
+	 * @param dept
+	 * @param cNum
+	 * @param sid
+	 * @param sNum
+	 * @return int
+	 */
 	public int validCourse(String dept, String cNum, String sid, String sNum){
 		int success = 0;
 		ResultSet rset = null;
@@ -122,7 +129,11 @@ public class Utilities {
 		return success;
 	}
 	
-	
+	/**
+	 * This method tells the user if their Department name was a valid name or not by returing an int which represents a success or failure. 
+	 * @param dept
+	 * @return
+	 */
 	public int validDept(String dept){
 		int success = 0;
 		

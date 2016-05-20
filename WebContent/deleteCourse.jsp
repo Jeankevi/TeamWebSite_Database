@@ -42,7 +42,7 @@
 	<%if(success > 0){ %>
 		<p style="color:green";><b>The course was deleted</b></p>
 	<%}else{ %>
-		<p style="color:red";><b>The course was not deleted, or the course is not there!</b></p>
+		<p style="color:red";><b>The course was not deleted. The Course/Schedule may not exist or SID may be invalid</b></p>
 	<%} %>
 	<a href="index.jsp">Back to Main Menu</a>	
 		  
