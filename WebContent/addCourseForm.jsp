@@ -43,7 +43,7 @@
 	<p>
 		<tr> <td> Schedule Number: </td> <td> <select id = "sNum" style= "width: 145px;" tabindex="5" name="Tag">
 			<% while (rset.next()) {%>				
-			<option value = "<%=rset.getString(1)%>" selected = "sNum" ><%=rset.getString(1)%></option>
+			<option value = "<%=rset.getString(1)%>" selected ="sNum"><%=rset.getString(1)%></option>
 			<%}%>
 			</select></td></tr>
 	</p>

@@ -101,30 +101,30 @@ public class Utilities {
 		ResultSet rset = null;
 		int schNum = Integer.parseInt(sNum);
 		
-		System.out.println(validSchedule(sid, schNum));
+		System.out.println("This is the vlaid schedule check "+ validSchedule(sid, schNum));
 		
 		if(validSchedule(sid, schNum) == 2){
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
-				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"', course_num = "+cNum+"";
+				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"' and course_num = "+cNum+"";
 				rset = stmt.executeQuery(sql);
-				System.out.println(success);
+				System.out.println("success should be 0 here ->"+success);
 				if(rset.next()){
 					success += 1;
-					System.out.println(success);
+					System.out.println("rset has next, sql success: "+success);
 				}
 			} catch (SQLException e) {
 				success = 0;
-				System.out.println(success);
+				System.out.println("sql failed for some reason, this should be 0 -> "+success);
 			}
 					
 		}
 		else{
 			success = -1;
-			System.out.println(success);
+			System.out.println("not a valid schedule, negative 1 -> "+success);
 		}
-		System.out.println("the last: "+success);
+		System.out.println("the last, if 1 then successful: "+success);
 		return success;
 	}
 	
@@ -215,7 +215,7 @@ public class Utilities {
 			if(success > 0){
 				Statement show = conn.createStatement();
 				sql = null;
-				sql = "SELECT year, semester_c, dept, course_num FROM belongs_to WHERE sid = '"+sid+"', sch_num = "+sNum+" ORDER BY year";
+				sql = "SELECT year, semester_c, dept, course_num FROM belongs_to WHERE sid = '"+sid+"' and sch_num = "+sNum+" ORDER BY year";
 				rset = show.executeQuery(sql);
 			}
 

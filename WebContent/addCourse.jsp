@@ -22,18 +22,16 @@
 	<%}%>
 
 	The Schedule number is:
-	<%=request.getParameter("sNum")%>
+	<%=request.getParameter("Tag")%>
 	<br> The Department is:
 	<%=request.getParameter("dept")%>
 	<br> The Course Number is:
 	<%=request.getParameter("cNum")%>
-	<br>In this semester is:
+	<br>In this semester:
 	<%=request.getParameter("sem")%>
-	<br>In this year is:
+	<br>In this year:
 	<%=request.getParameter("year")%>
 	<br>
-
-
 
 	<%
 		String sid = null;
@@ -43,8 +41,8 @@
 			sid = userInfo.getUser();
 		}
 
-		String sNum = request.getParameter("sNum");
-		System.out.println(sNum);
+		String sNum = request.getParameter("Tag");
+		System.out.println("This is sNum from addCourse: "+sNum);
 		int cNum = Integer.parseInt(request.getParameter("cNum"));
 		String dept = (request.getParameter("dept")).toUpperCase();
 		String sem = (request.getParameter("sem")).toUpperCase();
@@ -81,11 +79,12 @@
 			<td align="center"><%=rset.getInt(1)%></td>
 			<td align="center"><%=rset.getString(2)%></td>
 			<td align="center"><%=rset.getString(3)%></td>
-			<td align="center"><%=rset.getInt(5)%></td>
+			<td align="center"><%=rset.getInt(4)%></td>
 		</tr>
 		<%}%>
 
 	</table>
+
 	<a href="addCourseForm.jsp">Add Another Course</a>
 	<a href="index.jsp">Back to Main Menu</a>
 
