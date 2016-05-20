@@ -118,7 +118,8 @@ public class Utilities {
 				success = 0;
 				System.out.println("sql failed for some reason, this should be 0 -> "+success);
 			}
-					
+			
+				
 		}
 		else{
 			success = -1;
@@ -127,6 +128,16 @@ public class Utilities {
 		System.out.println("the last, if 1 then successful: "+success);
 		return success;
 	}
+	
+	
+	public int validDept(String dept){
+		int success = 0;
+		
+		if(!dept.equals("MATH") || !dept.equals("CSCE") || !dept.equals("PHYS") || !dept.equals("BIOL") || !dept.equals("CHEM")){
+			success =-1;
+			}
+		return success;
+		}
 	
 
 	/**
