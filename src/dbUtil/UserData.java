@@ -50,6 +50,9 @@ public class UserData {
 		this.student = student;
 	}
 
+	/**
+	 * Resets user info and flags, used in logout
+	 */
 	public void reset(){
 		user = "";
 		yr_in = 0;
@@ -61,6 +64,9 @@ public class UserData {
 		courseOnSchedule = false;
 	}
 	
+	/**
+	 * Resets flags only, used in navigation to homepage
+	 */
 	public void homeReset(){
 		valid = true;
 		addNewAdviser = true;
@@ -70,26 +76,50 @@ public class UserData {
 		courseOnSchedule = false;
 	}
 	
+	/**
+	 * Method that returns the value of validSchedule
+	 * @return boolean value of validSchedule
+	 */
 	public boolean isValidSchedule(){
 		return validSchedule;
 	}
 	
+	/**
+	 * method that sets the value of validSchedule
+	 * @param valSch the boolean value that validSchedule will be set to
+	 */
 	public void setValidSchedule(boolean valSch){
 		this.validSchedule = valSch;
 	}
 	
+	/**
+	 * method that returns the value of validCourse
+	 * @return boolean value of validCourse
+	 */
 	public boolean isValidCourse(){
 		return validCourse;
 	}
 	
+	/**
+	 * method that sets the value of courseOnSchedule
+	 * @param cOS the boolean value that courseOnSchedule will be set to
+	 */
 	public void setCourseOnSchedule(boolean cOS){
 		this.courseOnSchedule = cOS;
 	}
 	
+	/**
+	 * method that returns the value of courseOnSchedule 
+	 * @return boolean value of courseOnSchedule
+	 */
 	public boolean isCourseOnSchedule(){
 		return courseOnSchedule;
 	}
 
+	/**
+	 * method that sets the value of validCourse
+	 * @param valCrs the boolean value that validCourse will be set to
+	 */
 	public void setValidCourse(boolean valCrs){
 		this.validCourse = valCrs;
 	}
@@ -106,6 +136,9 @@ public class UserData {
 	public void setAddNewAdviser(boolean addNewAdviser) {
 		this.addNewAdviser = addNewAdviser;
 	}
+	/**
+	 * UserData super class
+	 */
 	public UserData(){
 		super();
 	}
@@ -137,9 +170,18 @@ public class UserData {
 		this.user = user;
 	}
 	
+	/**
+	 * Method that returns the current value of yr_in
+	 * @return integer value of yr_in
+	 */
 	public int getYearIn(){
 		return yr_in;
 	}
+	
+	/**
+	 * Method that sets the value of yr_in
+	 * @param yrIn the passed in value that yr_in will be set to
+	 */
 	public void setYearIn(int yrIn) {
 		this.yr_in = yrIn;
 	}

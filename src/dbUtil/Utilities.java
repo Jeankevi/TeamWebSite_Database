@@ -215,6 +215,17 @@ public class Utilities {
 		}
 	}// closeDB
 
+	/**
+	 * This method creates a new student using the passed in values, also uses valid sign up to check the 
+	 * validity of the information passed to the method.
+	 * @param sid student id
+	 * @param fname students first name
+	 * @param lname students last name
+	 * @param passwrd the password that the student has entered
+	 * @param yr_in the year that the student is starting their college carrer
+	 * @return if successful, a result set is returned that contains all the relavent student information that the student just
+	 * entered into the database.
+	 */
 	public ResultSet createStudent(String sid, String fname, String lname, String passwrd, int yr_in){
 		String sql = null;
 		ResultSet rset = null;
@@ -250,6 +261,16 @@ public class Utilities {
 		return rset;
 	}
 
+	/**
+	 * This methods adds a course to a schedule by inserting a new tuple into the belongs_to table
+	 * @param sid the students id
+	 * @param sNum the schedule number that the course will be added to
+	 * @param dept the department number of the course
+	 * @param cNum the course number of the course
+	 * @param sem the semester that the course is going to be taken
+	 * @param year the year that the course is going to be taken
+	 * @return if successful, a result set that contains all the courses in the schedule that the student added a course to
+	 */
 	public ResultSet addCourse(String sid, String sNum, String dept, String cNum, String sem, int year){
 		ResultSet rset = null;
 		String sql = null;
@@ -278,6 +299,15 @@ public class Utilities {
 		return rset;
 	}
 
+	/**
+	 * This method is used to check if the information entered into the signup form is correct.
+	 * @param sid the student id
+	 * @param fname the sudents first name
+	 * @param lname the students last name
+	 * @param passwrd the students password
+	 * @param yr_in the year that the student starts their college carrer
+	 * @return an integer value indicating if the information passed to the method is valid
+	 */
 	public int validSignUp(String sid, String fname, String lname, String passwrd, int yr_in){
 		int success = -1;
 		if(sid.length() == 8 && passwrd.length() > 5 && passwrd.length() < 16 && yr_in > 2000 && yr_in < 2050){
@@ -292,6 +322,12 @@ public class Utilities {
 		return success;
 	}
 
+	/**
+	 * This method checks to see if the information entered is valid, and if it is in the database
+	 * @param sid the student id 
+	 * @param schNum the number of the students schedule
+	 * @return an integer value representing the relative succes of the checks, which is handeled in the JSP
+	 */
 	public int validSchedule(String sid, int schNum){
 		int success = -1;
 
