@@ -41,19 +41,18 @@
 	}%>
 
 	<p>
-		Schedule number: <select id = "sch_num" style="width: 150px;" tabindex="5" name="Tag">
-			<option></option>
-			<% while (rset.next()) {%>
-			<option value = "<%= rset.getString(1) %>" select = "sch_num" ><%= rset.getString(1) %></option>
+		<tr> <td> Schedule Number: </td> <td> <select id = "sNum" style= "width: 145px;" tabindex="5" name="Tag">
+			<% while (rset.next()) {%>				
+			<option value = "<%=rset.getString(1)%>" selected = "sNum" ><%=rset.getString(1)%></option>
 			<%}%>
-			</select>
+			</select></td></tr>
 	</p>
 	<tr> <td> Course Department: </td> <td> <input type="text" name="dept" value="" size="20" required> </td> </tr>
 	<tr> <td> Course Number: </td> <td> <input type="text" name="cNum" value="" size="20" required> </td> </tr>
 	<tr> <td> In what semester: </td> <td> <input type="text" name="sem" value="" size="20" required> </td> </tr>
 	<tr> <td> In what year: </td> <td> <input type="text" name="year" value="" size="20" required> </td> </tr>
 </table>
-<input type="submit" value="Create Schedule">
+<input type="submit" value="Add Course">
 
 
 

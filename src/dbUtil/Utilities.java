@@ -96,28 +96,35 @@ public class Utilities {
 
 	}// validUser
 	
-	public int validCourse(String dept, int cNum, String sid, int sNum){
+	public int validCourse(String dept, int cNum, String sid, String sNum){
 		int success = 0;
 		ResultSet rset = null;
+		int schNum = Integer.parseInt(sNum);
 		
-		if(validSchedule(sid, sNum) == 2){
+		System.out.println(validSchedule(sid, schNum));
+		
+		if(validSchedule(sid, schNum) == 2){
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
 				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"', course_num = "+cNum+"";
 				rset = stmt.executeQuery(sql);
+				System.out.println(success);
 				if(rset.next()){
 					success += 1;
+					System.out.println(success);
 				}
 			} catch (SQLException e) {
 				success = 0;
+				System.out.println(success);
 			}
 					
 		}
 		else{
 			success = -1;
+			System.out.println(success);
 		}
-		
+		System.out.println("the last: "+success);
 		return success;
 	}
 	
@@ -164,7 +171,6 @@ public class Utilities {
 		ResultSet rset = null;
 		
 		if(validSignUp(sid,fname,lname,passwrd,yr_in) == 1){
-			//fname = fname.substring(0, 1).toUpperCase() + fname.substring(1).toLowerCase();
 		
 			try {
 				// create a Statement and an SQL string for the statement
@@ -195,7 +201,7 @@ public class Utilities {
 		return rset;
 	}
 	
-	public ResultSet addCourse(String sid, int sNum, String dept, int cNum, String sem, int year){
+	public ResultSet addCourse(String sid, String sNum, String dept, int cNum, String sem, int year){
 		ResultSet rset = null;
 		String sql = null;
 		
@@ -209,7 +215,7 @@ public class Utilities {
 			if(success > 0){
 				Statement show = conn.createStatement();
 				sql = null;
-				sql = "SELECT * FROM belongs_to WHERE sid = '"+sid+"', sch_num = "+sNum+"";
+				sql = "SELECT year, semester_c, dept, course_num FROM belongs_to WHERE sid = '"+sid+"', sch_num = "+sNum+" ORDER BY year";
 				rset = show.executeQuery(sql);
 			}
 
@@ -275,7 +281,7 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return result
 	 */
-	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
+	public ResultSet createSchedule(String sNum, String sid, int yrPlan, String type){
 		ResultSet rset = null;
 		String sql = null;
 
