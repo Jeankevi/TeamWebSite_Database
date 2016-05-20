@@ -51,10 +51,10 @@ public class UserData {
 	}
 	
 	public void setCourseOnSchedule(boolean cOS){
-		this.validCourse = cOS;
+		this.courseOnSchedule = cOS;
 	}
 	
-	public boolean courseOnSchedule(){
+	public boolean isCourseOnSchedule(){
 		return courseOnSchedule;
 	}
 	

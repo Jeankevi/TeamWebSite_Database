@@ -96,36 +96,29 @@ public class Utilities {
 
 	}// validUser
 	
-	public int validCourse(String dept, int cNum, String sid, String sNum){
+	public int validCourse(String dept, String cNum, String sid, String sNum){
 		int success = 0;
 		ResultSet rset = null;
 		int schNum = Integer.parseInt(sNum);
-		
-		System.out.println("This is the vlaid schedule check "+ validSchedule(sid, schNum));
 		
 		if(validSchedule(sid, schNum) == 2){
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
-				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"' and course_num = "+cNum+"";
+				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"' and course_num = '"+cNum+"'";
 				rset = stmt.executeQuery(sql);
-				System.out.println("success should be 0 here ->"+success);
 				if(rset.next()){
 					success += 1;
-					System.out.println("rset has next, sql success: "+success);
 				}
 			} catch (SQLException e) {
 				success = 0;
-				System.out.println("sql failed for some reason, this should be 0 -> "+success);
 			}
 			
 				
 		}
 		else{
 			success = -1;
-			System.out.println("not a valid schedule, negative 1 -> "+success);
 		}
-		System.out.println("the last, if 1 then successful: "+success);
 		return success;
 	}
 	
@@ -212,30 +205,32 @@ public class Utilities {
 		return rset;
 	}
 	
-	public ResultSet addCourse(String sid, String sNum, String dept, int cNum, String sem, int year){
+	public ResultSet addCourse(String sid, String sNum, String dept, String cNum, String sem, int year){
 		ResultSet rset = null;
 		String sql = null;
+		int success;
 		
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
 			sql = "INSERT INTO belongs_to (year, semester_c, dept, course_num, sid, sch_num) " +
-					"VALUES ( "+year+", '"+sem+"', '"+dept+"', "+cNum+", '"+sid+"', "+sNum+") ";
-			int success = stmt.executeUpdate(sql);
-
+					"VALUES ( "+year+", '"+sem+"', '"+dept+"', '"+cNum+"', '"+sid+"', "+sNum+") ";
+			success = stmt.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			success = 0;
+		}
+		try {
 			if(success > 0){
-				Statement show = conn.createStatement();
+				Statement show;
+				show = conn.createStatement();
 				sql = null;
 				sql = "SELECT year, semester_c, dept, course_num FROM belongs_to WHERE sid = '"+sid+"' and sch_num = "+sNum+" ORDER BY year";
 				rset = show.executeQuery(sql);
 			}
-
-
 		} catch (SQLException e) {
-			System.out.println("createStatement " + e.getMessage() + sql);
-
+			rset = null;
 		}
-		
 		return rset;
 	}
 	

@@ -42,8 +42,7 @@
 		}
 
 		String sNum = request.getParameter("Tag");
-		System.out.println("This is sNum from addCourse: "+sNum);
-		int cNum = Integer.parseInt(request.getParameter("cNum"));
+		String cNum = request.getParameter("cNum");
 		String dept = (request.getParameter("dept")).toUpperCase();
 		String sem = (request.getParameter("sem")).toUpperCase();
 		int year = Integer.parseInt(request.getParameter("year"));
@@ -90,6 +89,7 @@
 	</table>
 
 	<a href="addCourseForm.jsp">Add Another Course</a>
+	<br>
 	<a href="index.jsp">Back to Main Menu</a>
 
 </body>

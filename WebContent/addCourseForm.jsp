@@ -21,7 +21,7 @@
 <%}else if(!userInfo.isValidSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Schedule Number Must be Between 1 and 9</p>
-<%}else if(userInfo.courseOnSchedule()){ %>
+<%}else if(userInfo.isCourseOnSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Course is Already on Schedule</p>
 <%}%>
@@ -47,7 +47,7 @@
 	<tr> <td> Course Department: </td> <td> <input type="text" name="dept" value="" size="20" required> </td> </tr>
 	<tr> <td> Course Number: </td> <td> <input type="text" name="cNum" value="" size="20" required> </td> </tr>
 	<tr> <td> In what semester: </td> <td> <input type="text" name="sem" value="" size="20" required> </td> </tr>
-	<tr> <td> In what year: </td> <td> <input type="text" name="year" value="" size="20" required> </td> </tr>
+	<tr> <td> In what year: </td> <td> <input type="number" name="year" value="" size="20" required> </td> </tr>
 </table>
 <input type="submit" value="Add Course">
 
