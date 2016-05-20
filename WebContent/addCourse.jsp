@@ -42,7 +42,7 @@
 			sid = userInfo.getUser();
 		}
 
-		String sNum = request.getParameter("Tag");
+		String sNum = request.getParameter("sNum");
 		String cNum = request.getParameter("cNum");
 		String dept = (request.getParameter("dept")).toUpperCase();
 		String sem = (request.getParameter("sem")).toUpperCase();
