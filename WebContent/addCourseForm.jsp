@@ -14,20 +14,17 @@
 <title>Add A Course To a Schedule</title>
 </head>
 <body>
-<h1> Student creates a new Schedule </h1>
-<%if(!userInfo.isValidSchedule()){ %>
-	<h2 style="color: red;">Error Message</h2>
-	<p style="color: red;">Invalid Schedule Number. Schedule number must be between 1 and 9</p>
-<%} %>
-
+<h1> Add a Course to a Schedule </h1>
 <%if(!userInfo.isValidCourse()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Invalid Course. Make sure both department and course number are correct</p>
 <%}else if(!userInfo.isValidSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Schedule Number Must be Between 1 and 9</p>
+<%}else if(userInfo.courseOnSchedule()){ %>
+	<h2 style="color: red;">Error Message</h2>
+	<p style="color: red;">Course is Already on Schedule</p>
 <%}%>
-
 <form action = "addCourse.jsp" method="post">
 
 <table>

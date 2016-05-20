@@ -64,25 +64,29 @@
 		}
 		
 		ResultSet rset = myUtil.addCourse(sid, sNum, dept, cNum, sem, year);
-	%>
-
-	<table border="1" cellpadding="5">
-		<tr>
-			<th>Year</th>
-			<th>Semester</th>
-			<th>Department</th>
-			<th>Course Number</th>
-			
-		</tr>
-		<%while (rset.next()) {%>
-		<tr>
-			<td align="center"><%=rset.getInt(1)%></td>
-			<td align="center"><%=rset.getString(2)%></td>
-			<td align="center"><%=rset.getString(3)%></td>
-			<td align="center"><%=rset.getInt(4)%></td>
-		</tr>
-		<%}%>
-
+		
+		if(rset != null){%>
+			<table border="1" cellpadding="5">
+				<tr>
+					<th>Year</th>
+					<th>Semester</th>
+					<th>Department</th>
+					<th>Course Number</th>
+					
+				</tr>
+				<%while (rset.next()) {%>
+				<tr>
+					<td align="center"><%=rset.getInt(1)%></td>
+					<td align="center"><%=rset.getString(2)%></td>
+					<td align="center"><%=rset.getString(3)%></td>
+					<td align="center"><%=rset.getInt(4)%></td>
+				</tr>
+				<%}
+		 }
+		 else{
+			 userInfo.setCourseOnSchedule(true);
+			 %><jsp:forward page="addCourseForm.jsp"></jsp:forward><%
+		 }%>
 	</table>
 
 	<a href="addCourseForm.jsp">Add Another Course</a>
