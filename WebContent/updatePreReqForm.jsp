@@ -17,7 +17,7 @@
 <body>
 <h1> Update PreReq </h1>
 
-<%if(!userInfo.validDept()){ %>
+<%if(!userInfo.isValidDept()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Invalid Department name</p>
 <%} %>
@@ -26,16 +26,16 @@
 <table> 
 
 
-   <tr> <td> Old PreReq Course Department to be updated: </td>  <td> <input type="text" name="oDept" value="MATH" size="20"> </td> </tr>
-   <tr> <td> Old PreReq Course Number to be updated: </td>  <td> <input type="text" name="oNum" value="140" size="20"> </td> </tr>
+   <tr> <td> Old PreReq Course Department to be updated: </td>  <td> <input type="text" name="oDept" value="" size="20" required> </td> </tr>
+   <tr> <td> Old PreReq Course Number to be updated: </td>  <td> <input type="number" name="oNum" value="" size="20" required> </td> </tr>
   
-   <tr> <td> Course Department with the PreReq: </td>  <td> <input type="text" name="cDept" value="CHEM" size="20"> </td> </tr>
-   <tr> <td> Course Department with the PreReq: </td>  <td> <input type="text" name="cNum" value="115" size="20"> </td> </tr>
+   <tr> <td> Course Department with the PreReq: </td>  <td> <input type="text" name="cDept" value="" size="20" required> </td> </tr>
+   <tr> <td> Course Department with the PreReq: </td>  <td> <input type="number" name="cNum" value="" size="20" required> </td> </tr>
   
   
   
-   <tr> <td> New PreReq Course Department: </td>  <td> <input type="text" name="nDept" value="MATH" size="20"> </td> </tr>
-   <tr> <td> New PreReq Course Number: </td>  <td> <input type="text" name="nNum" value="152" size="20"> </td> </tr>
+   <tr> <td> New PreReq Course Department: </td>  <td> <input type="text" name="nDept" value="" size="20" required> </td> </tr>
+   <tr> <td> New PreReq Course Number: </td>  <td> <input type="number" name="nNum" value="" size="20" required> </td> </tr>
 
 
 

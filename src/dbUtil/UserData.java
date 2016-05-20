@@ -15,7 +15,22 @@ public class UserData {
 	private boolean validSchedule = true;
 	private boolean validCourse = true;
 	private boolean courseOnSchedule = false;
+	private boolean validDept = true;
 	
+	/**
+	 * @return the validDept
+	 */
+	public boolean isValidDept() {
+		return validDept;
+	}
+
+	/**
+	 * @param validDept the validDept to set
+	 */
+	public void setValidDept(boolean validDept) {
+		this.validDept = validDept;
+	}
+
 	/**
 	 * @return the student
 	 */
