@@ -20,7 +20,7 @@
 	<p style="color: red;">Invalid SID or Schedule Number Already Exists or Schedule Number Must be Between 1 and 9</p>
 <%} %>
 
-<form action = "createSchedule.jsp" method="get">
+<form action = "createSchedule.jsp" method="post">
 
 
 
