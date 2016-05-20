@@ -63,15 +63,15 @@ public class Utilities {
 			stmt.clearParameters();
 			stmt.setString(1,id);
 			stmt.setString(2, password);
-			
+
 			PreparedStatement stmt2 = conn.prepareStatement(sql);
 			stmt2.clearParameters();
 			stmt2.setString(1,id);
 			stmt2.setString(2, password);
-			
+
 			rset = stmt.executeQuery();
 			ResultSet copy = stmt2.executeQuery();
-			
+
 			if(copy.next()){
 				return rset;
 			}
@@ -85,7 +85,7 @@ public class Utilities {
 				pstmt.setString(2, password);
 				rset = pstmt.executeQuery();
 			}
-				
+
 
 
 		} catch (SQLException e) {
@@ -95,14 +95,14 @@ public class Utilities {
 		return rset;
 
 	}// validUser
-	
+
 	public int validCourse(String dept, int cNum, String sid, String sNum){
 		int success = 0;
 		ResultSet rset = null;
 		int schNum = Integer.parseInt(sNum);
-		
+
 		System.out.println("This is the vlaid schedule check "+ validSchedule(sid, schNum));
-		
+
 		if(validSchedule(sid, schNum) == 2){
 			Statement stmt;
 			try {
@@ -118,8 +118,8 @@ public class Utilities {
 				success = 0;
 				System.out.println("sql failed for some reason, this should be 0 -> "+success);
 			}
-			
-				
+
+
 		}
 		else{
 			success = -1;
@@ -128,17 +128,35 @@ public class Utilities {
 		System.out.println("the last, if 1 then successful: "+success);
 		return success;
 	}
-	
-	
-	public int validDept(String dept){
+
+
+	public int validDept(String dept,String num){
+		ResultSet rset = null;
+		String sql = null;
 		int success = 0;
-		
+
+		try {
+			// create a Statement and an SQL string for the statement
+			Statement stmt = conn.createStatement();
+			sql = "SELECT * FROM course WHERE course_num = '"+num+"' and dept = '"+dept+"'";
+			rset = stmt.executeQuery(sql);
+			if(rset.next()){
+				success = 1;
+			}
+
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage() + sql);
+			//rset = null;
+		}
+		/**
+		int success = 0;
+
 		if(!dept.equals("MATH") || !dept.equals("CSCE") || !dept.equals("PHYS") || !dept.equals("BIOL") || !dept.equals("CHEM")){
 			success =-1;
-			}
+			}*/
 		return success;
-		}
-	
+	}
+
 
 	/**
 	 * This method opens the database for the user 
@@ -176,16 +194,16 @@ public class Utilities {
 			System.err.println("Failed to close database connection: " + e);
 		}
 	}// closeDB
-	
+
 	public ResultSet createStudent(String sid, String fname, String lname, String passwrd, int yr_in){
 		String sql = null;
 		ResultSet rset = null;
-		
+
 		if(validSignUp(sid,fname,lname,passwrd,yr_in) == 1){
-		
+
 			try {
 				// create a Statement and an SQL string for the statement
-				
+
 				sql = "INSERT INTO student (sid, s_password, s_first, s_last, yr_in) " +
 						"VALUES (?,?,?,?,?) ";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -196,26 +214,26 @@ public class Utilities {
 				pstmt.setString(4, lname);
 				pstmt.setInt(5, yr_in);
 				int success = pstmt.executeUpdate();
-				
+
 				if(success > 0){
 					Statement show = conn.createStatement();
 					sql = null;
 					sql = "SELECT * FROM student WHERE sid = '"+sid+"'";
 					rset = show.executeQuery(sql);
 				}
-				
+
 			} catch (SQLException e) {
 				System.out.println("createStatement " + e.getMessage() + sql);
-	
+
 			}
 		}
 		return rset;
 	}
-	
+
 	public ResultSet addCourse(String sid, String sNum, String dept, int cNum, String sem, int year){
 		ResultSet rset = null;
 		String sql = null;
-		
+
 		try {
 			// create a Statement and an SQL string for the statement
 			Statement stmt = conn.createStatement();
@@ -235,10 +253,10 @@ public class Utilities {
 			System.out.println("createStatement " + e.getMessage() + sql);
 
 		}
-		
+
 		return rset;
 	}
-	
+
 	public int validSignUp(String sid, String fname, String lname, String passwrd, int yr_in){
 		int success = -1;
 		if(sid.length() == 8 && passwrd.length() > 5 && passwrd.length() < 16 && yr_in > 2000 && yr_in < 2050){
@@ -252,36 +270,36 @@ public class Utilities {
 		}
 		return success;
 	}
-	
+
 	public int validSchedule(String sid, int schNum){
 		int success = -1;
-		
-			if(sid.length() == 8 && schNum < 10 && schNum > 0){
-				ResultSet rset = null;
+
+		if(sid.length() == 8 && schNum < 10 && schNum > 0){
+			ResultSet rset = null;
+			success += 1;
+
+			try{	
+				Integer.parseInt(sid);
 				success += 1;
-				
-				try{	
-					Integer.parseInt(sid);
-					success += 1;
-				}
-				catch(NumberFormatException e){
+			}
+			catch(NumberFormatException e){
+				success -= 1;
+			}
+			if(success == 1){
+				try {
+					Statement stmt = conn.createStatement();
+					String sql = "SELECT sid FROM student WHERE sid= '"+sid+"'";
+					rset = stmt.executeQuery(sql);
+					if(rset.next()){
+						success += 1;
+					}
+				} catch (SQLException e) {
 					success -= 1;
 				}
-				if(success == 1){
-					try {
-						Statement stmt = conn.createStatement();
-						String sql = "SELECT sid FROM student WHERE sid= '"+sid+"'";
-						rset = stmt.executeQuery(sql);
-						if(rset.next()){
-							success += 1;
-						}
-					} catch (SQLException e) {
-						success -= 1;
-					}
-				}
-				
 			}
-		
+
+		}
+
 		return success;
 	}
 
@@ -566,7 +584,7 @@ public class Utilities {
 
 	public String updatePreReq(String oldPRNum,String oldPRDept,String newPRNum,String newPRDept,String cNum,String cDept){
 		String sql = null;
-		String test = "The PreReq was updated";
+		String test = "The PreReq was not updated";
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -576,7 +594,9 @@ public class Utilities {
 			int update = stmt.executeUpdate(sql);
 			sql = "insert into pre_req "+
 					"values ('"+cDept+"','"+cNum+"','"+newPRDept+"','"+newPRNum+"')";
-			stmt.executeUpdate(sql);
+			if(stmt.executeUpdate(sql)>0){
+				test = "The PreReq was updated";
+			}
 			//EndDEBUG
 			System.out.print(oldPRDept+" "+oldPRNum+" replaced with "+newPRDept+" "+newPRNum+"\n");						
 		} catch (SQLException e) {
@@ -587,7 +607,7 @@ public class Utilities {
 		return test;
 
 	}
-	
+
 	/**
 	 * Get single schedule
 	 * @param id student sid
@@ -597,21 +617,21 @@ public class Utilities {
 	public ResultSet getCurrentSchedule(String sid, int sch_num){
 		String sql = null;
 		ResultSet rset = null;
-		
+
 		try {
 			Statement stmt = conn.createStatement();
 
 			sql = "SELECT concat(dept,course_num) Course, semester_c, year, grade "
 					+ "FROM belongs_to WHERE sid = '"+sid+"' and sch_num = '"+sch_num+"' ";
 			rset=stmt.executeQuery(sql);
-				
+
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
-		
+
 		return rset;
 	}
-	
+
 	/**
 	 * Get all schedule number
 	 * @param id student sid
@@ -621,17 +641,17 @@ public class Utilities {
 	public ResultSet getAllScheduleNum(String sid){
 		String sql = null;
 		ResultSet rset = null;
-		
+
 		try {
 			Statement stmt = conn.createStatement();
 
 			sql = "SELECT sch_num  FROM schedule WHERE sid = '"+sid+"' ";
 			rset=stmt.executeQuery(sql);
-				
+
 		} catch (SQLException e) {
 			System.out.println("createStatement " + e.getMessage() + sql);
 		}
-		
+
 		return rset;
 	}
 
