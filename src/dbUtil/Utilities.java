@@ -148,12 +148,6 @@ public class Utilities {
 			System.out.println("createStatement " + e.getMessage() + sql);
 			//rset = null;
 		}
-		/**
-		int success = 0;
-
-		if(!dept.equals("MATH") || !dept.equals("CSCE") || !dept.equals("PHYS") || !dept.equals("BIOL") || !dept.equals("CHEM")){
-			success =-1;
-			}*/
 		return success;
 	}
 
