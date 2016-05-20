@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
 <% if(myUtil.getConn() == null){%>
 	<jsp:forward page="openForm.jsp"></jsp:forward>
 <% }%>
@@ -15,6 +16,11 @@
 </head>
 <body>
 <h1> Update PreReq </h1>
+
+<%if(!userInfo.validDept()){ %>
+	<h2 style="color: red;">Error Message</h2>
+	<p style="color: red;">Invalid Department name</p>
+<%} %>
 
 <form action="updatePreReq.jsp" method="get">
 <table> 

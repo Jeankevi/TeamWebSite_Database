@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+    <jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,7 +33,16 @@ The course number to be deleted: <%=request.getParameter("oNum") %> <br> <br>
 	   String nNum = request.getParameter("nNum");
 
 	   
-
+	   if(myUtil.validDept(oDept) != -1){
+			userInfo.setvalidDept(false);%>
+			<jsp:forward page="updatePreReqForm.jsp"></jsp:forward>
+			<%
+		}
+		else{
+			userInfo.setValidSchedule(true);
+		}
+	   
+	   
 	  String test = myUtil.updatePreReq(oNum, oDept, nNum, nDept, cNum, cDept);
 	%>
 	

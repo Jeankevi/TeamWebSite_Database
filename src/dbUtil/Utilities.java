@@ -96,30 +96,48 @@ public class Utilities {
 
 	}// validUser
 	
-	public int validCourse(String dept, int cNum, String sid, int sNum){
+	public int validCourse(String dept, int cNum, String sid, String sNum){
 		int success = 0;
 		ResultSet rset = null;
+		int schNum = Integer.parseInt(sNum);
 		
-		if(validSchedule(sid, sNum) == 2){
+		System.out.println("This is the vlaid schedule check "+ validSchedule(sid, schNum));
+		
+		if(validSchedule(sid, schNum) == 2){
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
-				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"', course_num = "+cNum+"";
+				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"' and course_num = "+cNum+"";
 				rset = stmt.executeQuery(sql);
+				System.out.println("success should be 0 here ->"+success);
 				if(rset.next()){
 					success += 1;
+					System.out.println("rset has next, sql success: "+success);
 				}
 			} catch (SQLException e) {
 				success = 0;
+				System.out.println("sql failed for some reason, this should be 0 -> "+success);
 			}
-					
+			
+				
 		}
 		else{
 			success = -1;
+			System.out.println("not a valid schedule, negative 1 -> "+success);
 		}
-		
+		System.out.println("the last, if 1 then successful: "+success);
 		return success;
 	}
+	
+	
+	public int validDept(String dept){
+		int success = 0;
+		
+		if(!dept.equals("MATH") || !dept.equals("CSCE") || !dept.equals("PHYS") || !dept.equals("BIOL") || !dept.equals("CHEM")){
+			success =-1;
+			}
+		return success;
+		}
 	
 
 	/**
@@ -164,7 +182,6 @@ public class Utilities {
 		ResultSet rset = null;
 		
 		if(validSignUp(sid,fname,lname,passwrd,yr_in) == 1){
-			//fname = fname.substring(0, 1).toUpperCase() + fname.substring(1).toLowerCase();
 		
 			try {
 				// create a Statement and an SQL string for the statement
@@ -195,7 +212,7 @@ public class Utilities {
 		return rset;
 	}
 	
-	public ResultSet addCourse(String sid, int sNum, String dept, int cNum, String sem, int year){
+	public ResultSet addCourse(String sid, String sNum, String dept, int cNum, String sem, int year){
 		ResultSet rset = null;
 		String sql = null;
 		
@@ -209,7 +226,7 @@ public class Utilities {
 			if(success > 0){
 				Statement show = conn.createStatement();
 				sql = null;
-				sql = "SELECT * FROM belongs_to WHERE sid = '"+sid+"', sch_num = "+sNum+"";
+				sql = "SELECT year, semester_c, dept, course_num FROM belongs_to WHERE sid = '"+sid+"' and sch_num = "+sNum+" ORDER BY year";
 				rset = show.executeQuery(sql);
 			}
 
@@ -275,7 +292,7 @@ public class Utilities {
 	 * @param type Type of degree the student plans on getting 
 	 * @return result
 	 */
-	public ResultSet createSchedule(String sNum, String sid,int yrPlan, String type){
+	public ResultSet createSchedule(String sNum, String sid, int yrPlan, String type){
 		ResultSet rset = null;
 		String sql = null;
 

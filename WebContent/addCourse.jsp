@@ -1,8 +1,6 @@
 <%@ page import="java.sql.*"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
 <jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session" />
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%if (myUtil.getConn() == null) {%>
 <jsp:forward page="openForm.jsp"></jsp:forward>
 <%}%>
@@ -24,18 +22,16 @@
 	<%}%>
 
 	The Schedule number is:
-	<%=request.getParameter("sNum")%>
+	<%=request.getParameter("Tag")%>
 	<br> The Department is:
 	<%=request.getParameter("dept")%>
 	<br> The Course Number is:
 	<%=request.getParameter("cNum")%>
-	<br>In this semester is:
+	<br>In this semester:
 	<%=request.getParameter("sem")%>
-	<br>In this year is:
+	<br>In this year:
 	<%=request.getParameter("year")%>
 	<br>
-
-
 
 	<%
 		String sid = null;
@@ -45,13 +41,14 @@
 			sid = userInfo.getUser();
 		}
 
-		int schNum = Integer.parseInt(request.getParameter("sNum"));
-
-				
-		String sNum = request.getParameter("sNum");
+		String sNum = request.getParameter("Tag");
+		System.out.println("This is sNum from addCourse: "+sNum);
 		int cNum = Integer.parseInt(request.getParameter("cNum"));
 		String dept = (request.getParameter("dept")).toUpperCase();
-		int temp = myUtil.validCourse(dept, cNum, sid, schNum);
+		String sem = (request.getParameter("sem")).toUpperCase();
+		int year = Integer.parseInt(request.getParameter("year"));
+		
+		int temp = myUtil.validCourse(dept, cNum, sid, sNum);
 		
 		if (temp != 1) {
 			if(temp == -1){
@@ -66,25 +63,29 @@
 			userInfo.setValidCourse(true);
 		}
 		
-		ResultSet rset = myUtil.addCourse(sNum, sid, dept, cNum);
+		ResultSet rset = myUtil.addCourse(sid, sNum, dept, cNum, sem, year);
 	%>
 
 	<table border="1" cellpadding="5">
 		<tr>
-			<th>Schedule Number</th>
+			<th>Year</th>
+			<th>Semester</th>
 			<th>Department</th>
 			<th>Course Number</th>
+			
 		</tr>
 		<%while (rset.next()) {%>
 		<tr>
 			<td align="center"><%=rset.getInt(1)%></td>
-			<td align="center"><%=rset.getInt(2)%></td>
+			<td align="center"><%=rset.getString(2)%></td>
 			<td align="center"><%=rset.getString(3)%></td>
+			<td align="center"><%=rset.getInt(4)%></td>
 		</tr>
 		<%}%>
 
 	</table>
 
+	<a href="addCourseForm.jsp">Add Another Course</a>
 	<a href="index.jsp">Back to Main Menu</a>
 
 </body>

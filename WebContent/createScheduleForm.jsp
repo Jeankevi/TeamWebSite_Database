@@ -17,7 +17,7 @@
 <h1> Student creates a new Schedule </h1>
 <%if(!userInfo.isValidSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
-	<p style="color: red;">Schedule Number Already Exists or Schedule Number Must be Between 1 and 9</p>
+	<p style="color: red;">Invalid SID or Schedule Number Already Exists or Schedule Number Must be Between 1 and 9</p>
 <%} %>
 
 <form action = "createSchedule.jsp" method="get">
