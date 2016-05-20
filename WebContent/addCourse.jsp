@@ -31,6 +31,7 @@
 	<%=request.getParameter("sem")%>
 	<br>In this year:
 	<%=request.getParameter("year")%>
+	
 	<br>
 
 	<%
@@ -41,11 +42,12 @@
 			sid = userInfo.getUser();
 		}
 
-		String sNum = request.getParameter("Tag");
+		String sNum = request.getParameter("sNum");
 		String cNum = request.getParameter("cNum");
 		String dept = (request.getParameter("dept")).toUpperCase();
 		String sem = (request.getParameter("sem")).toUpperCase();
 		int year = Integer.parseInt(request.getParameter("year"));
+		System.out.println(year);
 		
 		int temp = myUtil.validCourse(dept, cNum, sid, sNum);
 		
@@ -60,6 +62,11 @@
 			}
 		} else {
 			userInfo.setValidCourse(true);
+		}
+		System.out.println(userInfo.getYearIn());
+		if(year < userInfo.getYearIn() || year > (userInfo.getYearIn()+4)){
+			userInfo.setValid(false);
+			%><jsp:forward page="addCourseForm.jsp"></jsp:forward><%
 		}
 		
 		ResultSet rset = myUtil.addCourse(sid, sNum, dept, cNum, sem, year);
@@ -81,14 +88,14 @@
 					<td align="center"><%=rset.getInt(4)%></td>
 				</tr>
 				<%}
-		 }
-		 else{
+		 }else{
 			 userInfo.setCourseOnSchedule(true);
 			 %><jsp:forward page="addCourseForm.jsp"></jsp:forward><%
 		 }%>
 	</table>
-
-	<a href="addCourseForm.jsp">Add Another Course</a>
+	<form action = "addCourseForm.jsp" method="post">
+	<input type="submit" value="Add Another Course">
+	</form>
 	<br>
 	<a href="index.jsp">Back to Main Menu</a>
 

@@ -34,12 +34,14 @@
 
 	<br>
 	<%if(rset.next()){ %>
-	<% userInfo.setValid(true);%>
+	<% userInfo.setValid(true);
+	userInfo.setYearIn(myUtil.yearIn(userInfo.getUser()));%>
 	
 	<h2 style="color:green;">Welcome to Smart Schedule</h2>
 	
 	<%ResultSetMetaData rsmd = rset.getMetaData(); %>
-		<% if(rsmd.getColumnCount() > 4){ %>
+		<% if(rsmd.getColumnCount() > 4){ 
+			userInfo.setYearIn(Integer.parseInt(rset.getString(5)));%>
 			<% userInfo.setStudent(true); %>
 			<p><b>		
 				<%= rset.getString(4) +", " + rset.getString(3)%></b>
@@ -49,6 +51,7 @@
 			<p>
 				Your Adviser FID:
 				<%= rset.getString(6) %></p>
+				
 		<%}else{ %>
 			<% userInfo.setStudent(false); %>
 			<P><b>Hi Professor</b></P>

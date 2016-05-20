@@ -13,6 +13,7 @@ package dbUtil;
  */
 public class UserData { 
 	private String user = "";
+	private int yr_in = 0;
 	private boolean valid = true;
 	private boolean addNewAdviser = true;
 	private boolean student = true;
@@ -51,10 +52,22 @@ public class UserData {
 
 	public void reset(){
 		user = "";
+		yr_in = 0;
 		valid = true;
 		addNewAdviser = true;
 		student = true;
 		validSchedule = true;
+		validCourse = true;
+		courseOnSchedule = false;
+	}
+	
+	public void homeReset(){
+		valid = true;
+		addNewAdviser = true;
+		student = true;
+		validSchedule = true;
+		validCourse = true;
+		courseOnSchedule = false;
 	}
 	
 	public boolean isValidSchedule(){
@@ -123,6 +136,11 @@ public class UserData {
 	public void setUser(String user) {
 		this.user = user;
 	}
-
-
+	
+	public int getYearIn(){
+		return yr_in;
+	}
+	public void setYearIn(int yrIn) {
+		this.yr_in = yrIn;
+	}
 }
