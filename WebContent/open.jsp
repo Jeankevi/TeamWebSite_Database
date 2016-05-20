@@ -34,7 +34,8 @@
 
 	<br>
 	<%if(rset.next()){ %>
-	<% userInfo.setValid(true);%>
+	<% userInfo.setValid(true);
+	userInfo.setYearIn(myUtil.yearIn(userInfo.getUser()));%>
 	
 	<h2 style="color:green;">Welcome to Smart Schedule</h2>
 	

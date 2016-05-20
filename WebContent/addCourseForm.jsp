@@ -24,6 +24,9 @@
 <%}else if(userInfo.isCourseOnSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
 	<p style="color: red;">Course is Already on Schedule</p>
+<%}else if(!userInfo.isValid()){ %>
+	<h2 style="color: red;">Error Message</h2>
+	<p style="color: red;">Year is out of range</p>
 <%}%>
 <form action = "addCourse.jsp" method="post">
 
@@ -44,10 +47,15 @@
 			<%}%>
 			</select></td></tr>
 	</p>
+	<tr> <td> Semester: </td> <td><select name = "sem" style= "width: 145px;" tabindex="5">
+		  <option value="F" selected = "sem">Fall</option>
+		  <option value="J" selected = "sem">J-Term</option>
+		  <option value="S" selected = "sem">Spring</option>
+		</select></td> </tr>
+	<tr> <td> Year: </td> <td> <input type="text" name="year" value="" size="20" required> </td> </tr>
 	<tr> <td> Course Department: </td> <td> <input type="text" name="dept" value="" size="20" required> </td> </tr>
 	<tr> <td> Course Number: </td> <td> <input type="text" name="cNum" value="" size="20" required> </td> </tr>
-	<tr> <td> In what semester: </td> <td> <input type="text" name="sem" value="" size="20" required> </td> </tr>
-	<tr> <td> In what year: </td> <td> <input type="number" name="year" value="" size="20" required> </td> </tr>
+	
 </table>
 <input type="submit" value="Add Course">
 

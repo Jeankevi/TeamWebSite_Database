@@ -113,8 +113,6 @@ public class Utilities {
 			} catch (SQLException e) {
 				success = 0;
 			}
-			
-				
 		}
 		else{
 			success = -1;
@@ -122,6 +120,22 @@ public class Utilities {
 		return success;
 	}
 	
+	public int yearIn(String sid){
+		int yrIn = 0;
+		ResultSet rset = null;
+		
+		try{
+			Statement stmt = conn.createStatement();
+			String sql = "SELECT yr_in FROM student WHERE sid = '"+sid+"'";
+			rset = stmt.executeQuery(sql);
+			
+			yrIn = rset.getInt(1);
+		}
+		catch(SQLException e){
+			yrIn = 0;
+		}
+		return yrIn;
+	}
 	
 	public int validDept(String dept){
 		int success = 0;

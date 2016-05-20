@@ -62,6 +62,11 @@
 			userInfo.setValidCourse(true);
 		}
 		
+		if(year < userInfo.getYearIn() || year > (userInfo.getYearIn()+4)){
+			userInfo.setValid(false);
+			%><jsp:forward page="addCourseForm.jsp"></jsp:forward><%
+		}
+		
 		ResultSet rset = myUtil.addCourse(sid, sNum, dept, cNum, sem, year);
 		
 		if(rset != null){%>
