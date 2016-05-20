@@ -33,8 +33,8 @@ The course number to be deleted: <%=request.getParameter("oNum") %> <br> <br>
 	   String nNum = request.getParameter("nNum");
 
 	   
-	   if(myUtil.validDept(oDept) != -1){
-			userInfo.setvalidDept(false);%>
+	   if(myUtil.validDept(oDept) == -1){
+			userInfo.setValidDept(false);%>
 			<jsp:forward page="updatePreReqForm.jsp"></jsp:forward>
 			<%
 		}

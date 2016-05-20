@@ -26,25 +26,25 @@
 
 <table>
 	<%if(!userInfo.isStudent()){ %>
-		<tr> <td> Student ID: </td> <td> <input type="text" name="sid" value="" size="20" required> </td> </tr>
+		<tr> <td> Student ID: </td> <td> <input type="number" name="sid" value="" size="20" required> </td> </tr>
 	<%} %>
-	<tr> <td> Schedule Number: </td> <td> <input type="text" name="sNum" value="" size="20" required> </td> </tr>
+	<tr> <td> Schedule Number: </td> <td> <input type="number" name="sNum" value="" size="20" required> </td> </tr>
 	
 	
+
+	<tr> <td> Year Plan Number: </td> <td>    
+		<select name = "yrPlan">
+		  <option value="2" selected = "yrPlan">2</option>
+		  <option value="4" selected = "yrPlan">4</option>
+		</select>
+	</td> </tr>
 	
-	<tr> <td> Year Plan Number: 
-<select name = "yrPlan">
-  <option value="2" selected = "yrPlan">2</option>
-  <option value="4" selected = "yrPlan">4</option>
-</select>
-	</td> <td>
 	
-	
-	<tr> <td> Degree Type:  
-	<select name = "type">
-  <option value="BA" selected = "type">BA</option>
-  <option value="BS" selected = "type" >BS</option>
-</select>
+	<tr> <td> Degree Type: </td> <td>
+		<select name = "type">
+  			<option value="BA" selected = "type">BA</option>
+  			<option value="BS" selected = "type" >BS</option>
+		</select>
 	</td> </tr>
 	
 	
