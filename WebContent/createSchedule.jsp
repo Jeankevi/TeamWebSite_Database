@@ -22,14 +22,10 @@
 	<jsp:include page="head.jsp" />
 	<h1>Form data from createSchedule.jsp</h1>
 
-	<%
-		if (!userInfo.isStudent()) {
-	%>
+	<%if (!userInfo.isStudent()) {%>
 	The SID is:<%=request.getParameter("sid")%>
 	<br>
-	<%
-		}
-	%>
+	<%}%>
 
 	The Schedule number is:
 	<%=request.getParameter("sNum")%>
@@ -53,36 +49,39 @@
 
 		if (myUtil.validSchedule(sid, schNum) != 2) {
 			userInfo.setValidSchedule(false);
-	%>
-	<jsp:forward page="createScheduleForm.jsp"></jsp:forward>
-	<%
+		%><jsp:forward page="createScheduleForm.jsp"></jsp:forward><%
 		} else {
 			userInfo.setValidSchedule(true);
 		}
-
+		
 		String sNum = request.getParameter("sNum");
-		int yrPlan = Integer.parseInt(request.getSelectedIndex("yrPlan"));
-		String type = (request.getSelectedIndex("type")).toUpperCase();
+		int yrPlan = Integer.parseInt(request.getParameter("yrPlan"));
+		String type = (request.getParameter("type")).toUpperCase();
 		ResultSet rset = myUtil.createSchedule(sNum, sid, yrPlan, type);
+		
+		if(rset != null){
 	%>
 
-	<table border="1" cellpadding="5">
-		<tr>
-			<th>Schedule Number</th>
-			<th>Year Plan</th>
-			<th>Degree Type</th>
-		</tr>
+			<table border="1" cellpadding="5">
+				<tr>
+					<th>Schedule Number</th>
+					<th>Year Plan</th>
+					<th>Degree Type</th>
+				</tr>
 		<%
 			while (rset.next()) {
 		%>
-		<tr>
-			<td align="center"><%=rset.getInt(1)%></td>
-			<td align="center"><%=rset.getInt(2)%></td>
-			<td align="center"><%=rset.getString(3)%></td>
-		</tr>
+			<tr>
+				<td align="center"><%=rset.getInt(1)%></td>
+				<td align="center"><%=rset.getInt(2)%></td>
+				<td align="center"><%=rset.getString(3)%></td>
+			</tr>
 		<%
 			}
-		%>
+		}else{
+			userInfo.setValidSchedule(false);
+			%><jsp:forward page="createScheduleForm.jsp"></jsp:forward><%	
+		}%>
 
 	</table>
 

@@ -33,7 +33,7 @@
 		Schedule number: <select id = "sch_num" style="width: 150px;" tabindex="5" name="Tag">
 			<option></option>
 			<% while (rset.next()) {%>
-			<option value = "<%= rset.getString(1) %>"><%= rset.getString(1) %></option>
+			<option value = "<%= rset.getString(1) %>" select = "sch_num" ><%= rset.getString(1) %></option>
 			<%}%>
 
 		</select> <input type="submit" value="View">

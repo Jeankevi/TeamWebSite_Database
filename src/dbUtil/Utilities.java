@@ -95,6 +95,32 @@ public class Utilities {
 		return rset;
 
 	}// validUser
+	
+	public int validCourse(String dept, int cNum, String sid, int sNum){
+		int success = 0;
+		ResultSet rset = null;
+		
+		if(validSchedule(sid, sNum) == 2){
+			Statement stmt;
+			try {
+				stmt = conn.createStatement();
+				String sql = "SELECT dept, course_num FROM course WHERE dept= '"+dept+"', course_num = "+cNum+"";
+				rset = stmt.executeQuery(sql);
+				if(rset.next()){
+					success += 1;
+				}
+			} catch (SQLException e) {
+				success = 0;
+			}
+					
+		}
+		else{
+			success = -1;
+		}
+		
+		return success;
+	}
+	
 
 	/**
 	 * This method opens the database for the user 
@@ -166,6 +192,33 @@ public class Utilities {
 	
 			}
 		}
+		return rset;
+	}
+	
+	public ResultSet addCourse(String sid, int sNum, String dept, int cNum, String sem, int year){
+		ResultSet rset = null;
+		String sql = null;
+		
+		try {
+			// create a Statement and an SQL string for the statement
+			Statement stmt = conn.createStatement();
+			sql = "INSERT INTO belongs_to (year, semester_c, dept, course_num, sid, sch_num) " +
+					"VALUES ( "+year+", '"+sem+"', '"+dept+"', "+cNum+", '"+sid+"', "+sNum+") ";
+			int success = stmt.executeUpdate(sql);
+
+			if(success > 0){
+				Statement show = conn.createStatement();
+				sql = null;
+				sql = "SELECT * FROM belongs_to WHERE sid = '"+sid+"', sch_num = "+sNum+"";
+				rset = show.executeQuery(sql);
+			}
+
+
+		} catch (SQLException e) {
+			System.out.println("createStatement " + e.getMessage() + sql);
+
+		}
+		
 		return rset;
 	}
 	

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
- 
 <jsp:useBean id="userInfo" class="dbUtil.UserData" scope="session"/> 
 <% if(myUtil.getConn() == null){%>
 	<jsp:forward page="openForm.jsp"></jsp:forward>
@@ -18,7 +17,7 @@
 <h1> Student creates a new Schedule </h1>
 <%if(!userInfo.isValidSchedule()){ %>
 	<h2 style="color: red;">Error Message</h2>
-	<p style="color: red;">Invalid Schedule Number. Schedule number must be between 1 and 9</p>
+	<p style="color: red;">Schedule Number Already Exists or Schedule Number Must be Between 1 and 9</p>
 <%} %>
 
 <form action = "createSchedule.jsp" method="get">
@@ -35,15 +34,15 @@
 	
 	<tr> <td> Year Plan Number: 
 <select name = "yrPlan">
-  <option value="1" selected = "yrPlan"> 1 </option>
-  <option value="2" selected = "yrPlan"> 2</option>
+  <option value="2" selected = "yrPlan">2</option>
+  <option value="4" selected = "yrPlan">4</option>
 </select>
 	</td> <td>
 	
 	
 	<tr> <td> Degree Type:  
 	<select name = "type">
-  <option value="BA" selected = "type"> BA</option>
+  <option value="BA" selected = "type">BA</option>
   <option value="BS" selected = "type" >BS</option>
 </select>
 	</td> </tr>

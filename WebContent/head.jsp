@@ -56,11 +56,13 @@ li a {
 		<li><a href="index.jsp">Home</a></li>	
 		<li> <a href = "createScheduleForm.jsp">Create Schedule</a></li>
 		<li> <a href = "evaluateSchForm.jsp">Evaluate Schedule</a></li>
+		<li> <a href = "addCourseForm.jsp">Add a Course</a></li>
+		<li> <a href = "deleteCourseForm.jsp">Delete a Course</a></li>
 		<%if(!userInfo.isStudent()){ %>
 	    	<li> <a href = "newAdvisorForm.jsp">Add New Advisor</a></li>	    
 	    	<li> <a href = "updatePreReqForm.jsp">Updates PreReq</a></li>
 	    <%} %>
-	    <li> <a href = "deleteCourseForm.jsp">Deletes a Course</a></li>
+	    
 	    <li style="float:right; border-left:1px solid #bbb"><a href="logOut.jsp">LogOut</a></li>		  
 	<%}else{ %>
 		<li><a href="index.jsp">Home</a></li>	
