@@ -26,7 +26,7 @@
 	if(userInfo.isStudent()){
 		rset = myUtil.getAllScheduleNum(userInfo.getUser());
 		//ResultSet rsetSingle = myUtil.getCurrentSchedule(sid, sch_num)
-	}
+
 	%>
 
 	<p>
@@ -38,7 +38,7 @@
 
 		</select> <input type="submit" value="View">
 	</p>
-
+	<%} %>
 
 </body>
 </html>
